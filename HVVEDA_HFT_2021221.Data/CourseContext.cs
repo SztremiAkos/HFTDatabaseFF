@@ -102,6 +102,10 @@ namespace HVVEDA_HFT_2021221.Data
             course4.StudentId = student5.StudentID;
             course4.StudentId = student1.StudentID;
 
+            modelBuilder.Entity<Course>().HasData(course1, course2, course3, course4, course5);
+            modelBuilder.Entity<Teacher>().HasData(teacher1, teacher2, teacher3, teacher4, teacher5);
+            modelBuilder.Entity<Student>().HasData(student1, student2, student3, student4, student5, student6);
+
 
         }
     }
