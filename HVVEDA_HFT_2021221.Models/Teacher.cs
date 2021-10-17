@@ -13,8 +13,7 @@ namespace HVVEDA_HFT_2021221.Models
     {
 
         // 1 teacher -> 1 course
-        [Key]
-        public int TeacherID { get; set; }
+        [Key] public int TeacherId { get; set; }
 
         [Required]
         public string Firstname { get; set; }
@@ -23,9 +22,6 @@ namespace HVVEDA_HFT_2021221.Models
         public int? Salary { get; set; }
 
         [NotMapped]
-        public virtual Course Course { get; set; }
-
-        [ForeignKey(nameof(Course))]
-        public string CourseID { get; set; }
+        public virtual Course Teaches { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace HVVEDA_HFT_2021221.Models
     public class Student
     {
         //1 student -> n course
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudentID { get; set; }
         public string Firstname { get; set; }
         public string LastName { get; set; }
@@ -18,9 +21,7 @@ namespace HVVEDA_HFT_2021221.Models
 
         [NotMapped]
         public virtual Course Course { get; set; }
-
-        [ForeignKey(nameof(Course))]
-        public string Studies { get; set; }
+        public ICollection<Course> Courses { get; set; }
 
     }
 }

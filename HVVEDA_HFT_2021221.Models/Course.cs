@@ -13,39 +13,35 @@ namespace HVVEDA_HFT_2021221.Models
     {
         //1 course --> n Student
         [Key]
-        public int CourseID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int CourseID { get; set; } //
 
 
 
         [MaxLength(15)]
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; } //
 
-        [MaxLength(15)]
+        [MaxLength(30)]
         [Required]
-        public string Location { get; set; }
+        public string Location { get; set; } //
 
         [Required]
-        public DateTime Length { get; set; }
-
-
-
-        [NotMapped]
-        public virtual Student Student { get; set; }
-
+        public TimeSpan Length { get; set; } //
         public int? StudentsCount { get; set; }
-
 
 
         [NotMapped]
         public virtual Teacher Teacher { get; set; }
 
+        [ForeignKey(nameof(Teacher))]
+        public int TeacherId { get; set; }
 
 
-        [ForeignKey(nameof(Teacher))] public int TeacherID { get; set; }
-
-
-
+        [NotMapped]
+        public virtual Student Student { get; set; }
+        [ForeignKey(nameof(Student))]
+        public int StudentId { get; set; }
 
 
 
@@ -54,7 +50,7 @@ namespace HVVEDA_HFT_2021221.Models
 
         public ICollection<Student> Students { get; set; }
 
-        public ICollection<Teacher> Teachers { get; set; }
+        public virtual Teacher TheTeacher { get; set; }
         public Course()
         {
             Students = new HashSet<Student>();
