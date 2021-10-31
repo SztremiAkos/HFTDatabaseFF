@@ -12,16 +12,13 @@ namespace HVVEDA_HFT_2021221.Models
     public class Student
     {
         //1 student -> n course
-        [Key]
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int StudentID { get; set; }
         public string Firstname { get; set; }
         public string LastName { get; set; }
-        public int MyProperty { get; set; }
-
-        [NotMapped]
-        public virtual Course Course { get; set; }
-        public ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
 
     }
 }

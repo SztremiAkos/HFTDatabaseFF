@@ -8,21 +8,18 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Models
 {
-    [Table("Teachers")]
-    public class Teacher
+    [Table("Cleaners")]
+    public class Cleaner
     {
-
-        // 1 teacher -> 1 course
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int TeacherId { get; set; }
+        public int CleanerId { get; set; }
 
         [Required]
-        public string Firstname { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
         public int? Salary { get; set; }
+        public string Position { get; set; }
+        public virtual Course Location { get; set; }
 
-        [NotMapped]
-        public virtual ICollection<Course> Courses { get; set; }
     }
 }

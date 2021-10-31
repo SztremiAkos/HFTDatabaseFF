@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HVVEDA_HFT_2021221.Data;
+using System;
+using System.Linq;
 
 namespace HVVEDA_HFT_2021221.Client
 {
@@ -6,7 +8,9 @@ namespace HVVEDA_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CourseContext ctx = new CourseContext();
+            //Console.WriteLine(ctx.Students.Count());
+            ;
         }
     }
 }
