@@ -112,38 +112,9 @@ namespace HVVEDA_HFT_2021221.Data
             course5.TeacherId = teacher5.TeacherId;
             course5.CleanerId = cleaner5.CleanerId;
 
-
-
-
-
-            /*course1.Teacher = teacher1;
-            course2.Teacher = teacher2;
-
-            
-            course3.Teacher = teacher3;
-
-            
-            course4.Teacher = teacher4;
-
-            course1.StudentId = student1.StudentID;
-
-            
-            course2.StudentId = student2.StudentID;
-            course2.StudentId = student3.StudentID;
-
-            course3.StudentId = student1.StudentID;
-            course3.StudentId = student2.StudentID;
-            course3.StudentId = student3.StudentID;
-
-            course4.StudentId = student7.StudentID;
-            course4.StudentId = student6.StudentID;
-            course4.StudentId = student5.StudentID;
-            course4.StudentId = student1.StudentID;
-            */
-
             modelBuilder.Entity<Course>().HasData(course1, course2, course3, course4, course5);
             modelBuilder.Entity<Teacher>().HasData(teacher1, teacher2, teacher3, teacher4, teacher5);
-            modelBuilder.Entity<Student>().HasData(student1, student2, student3, student4, student5, student6);
+            modelBuilder.Entity<Student>().HasData(student1, student2, student3, student4, student5, student6, student7);
             modelBuilder.Entity<Cleaner>().HasData(cleaner1, cleaner2, cleaner3, cleaner4, cleaner5);
 
 

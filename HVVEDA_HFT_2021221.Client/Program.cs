@@ -9,7 +9,10 @@ namespace HVVEDA_HFT_2021221.Client
         static void Main(string[] args)
         {
             CourseContext ctx = new CourseContext();
-            //Console.WriteLine(ctx.Students.Count());
+            Console.WriteLine(ctx.Cleaners.Count());
+            Console.WriteLine(ctx.Courses.Count());
+            Console.WriteLine(ctx.Students.Count());
+            Console.WriteLine(ctx.Teachers.Count());
             ;
         }
     }
