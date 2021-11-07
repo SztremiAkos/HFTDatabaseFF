@@ -9,5 +9,8 @@ namespace HVVEDA_HFT_2021221.Repository
 {
     interface ICourseRepository : IRepository<Course>
     {
+        void ChangeCreditAmount(int id, int newCreditAmount);
+        void ChangeTitle(int id, string NewTitle);
+        void ChangeLocation(int id, string NewTitle);
     }
 }

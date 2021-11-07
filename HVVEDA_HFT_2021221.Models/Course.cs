@@ -55,17 +55,5 @@ namespace HVVEDA_HFT_2021221.Models
 
         [MaxLength(1)]
         public int? Credits { get; set; }
-
-        //[NotMapped]
-        //public virtual ICollection<Student> Students { get; set; }
-        //[NotMapped]
-        //public virtual ICollection<Teacher> Teachers { get; set; }
-        //[NotMapped]
-        //public virtual ICollection<Cleaner> Cleaners { get; set; }
-
-        //public Course()
-        //{
-        //    Students = new HashSet<Student>();
-        //}
     }
 }

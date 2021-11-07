@@ -9,5 +9,6 @@ namespace HVVEDA_HFT_2021221.Repository
 {
     interface IStudentRepository : IRepository<Student>
     {
+        ICollection<Course> GetAllCourses(int id);
     }
 }
