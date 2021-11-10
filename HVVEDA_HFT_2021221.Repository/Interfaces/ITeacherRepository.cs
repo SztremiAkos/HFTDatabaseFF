@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    interface ITeacherRepository : IRepository<Teacher>
+    interface ITeacherRepository
     {
         void ChangeSalary(int id, int newsalary);
         ICollection<Course> GetCourses(int id);        

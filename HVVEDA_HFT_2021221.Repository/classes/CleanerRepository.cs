@@ -1,4 +1,5 @@
 ﻿using HVVEDA_HFT_2021221.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,36 +8,40 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    class CleanerRepository : ICleanerRepository
+    public class CleanerRepository : Repository<Cleaner>, ICleanerRepository
     {
-        public void ChangeCourse(int id, string newCourse)
+        public CleanerRepository(DbContext ctx) : base(ctx) { }
+
+        public override void DeleteOne(int id)
         {
-            throw new NotImplementedException();
+            ctx.Remove(GetOne(id));
+            ctx.SaveChanges();
         }
 
-        public void ChangePosition(int id, string newPosition)
+        public override Cleaner GetOne(int id)
         {
-            throw new NotImplementedException();
+            return ReadAll().SingleOrDefault(x => x.CleanerId == id);
         }
 
-        public Cleaner DeleteOne(int id)
+        void ICleanerRepository.ChangeCourse(int id, Course newCourse)
         {
-            throw new NotImplementedException();
+            var toChange = GetOne(id);
+            toChange.Location = newCourse;
+            ctx.SaveChanges();
         }
 
-        public Cleaner GetOne(int id)
+        void ICleanerRepository.ChangePosition(int id, string newPosition)
         {
-            throw new NotImplementedException();
+            var toChange = GetOne(id);
+            toChange.Position = newPosition;
+            ctx.SaveChanges();
         }
 
-        public IQueryable<Cleaner> ReadAll()
+        void ICleanerRepository.SetNewSalary(int id, int newAmount)
         {
-            throw new NotImplementedException();
-        }
-
-        public void SetNewSalary(int id, int newAmount)
-        {
-            throw new NotImplementedException();
+            var toChange = GetOne(id);
+            toChange.Salary = newAmount;
+            ctx.SaveChanges();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HVVEDA_HFT_2021221.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,31 +8,31 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    class TeacherRepository : ITeacherRepository
+    class TeacherRepository : Repository<Teacher>,ITeacherRepository
     {
+        public TeacherRepository(DbContext ctx) : base(ctx) { }
         public void ChangeSalary(int id, int newsalary)
         {
-            throw new NotImplementedException();
+            var toChange = GetOne(id);
+            toChange.Salary = newsalary;
+            ctx.SaveChanges();
         }
 
-        public Teacher DeleteOne(int id)
+        public override void DeleteOne(int id)
         {
-            throw new NotImplementedException();
+            ctx.Remove(GetOne(id));
+            ctx.SaveChanges();
         }
 
         public ICollection<Course> GetCourses(int id)
         {
-            throw new NotImplementedException();
+            return GetOne(id).Courses.ToList();
         }
 
-        public Teacher GetOne(int id)
+        public override Teacher GetOne(int id)
         {
-            throw new NotImplementedException();
+            return ReadAll().SingleOrDefault(x => x.TeacherId==id);
         }
 
-        public IQueryable<Teacher> ReadAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

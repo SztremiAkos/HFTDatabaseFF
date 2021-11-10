@@ -19,7 +19,7 @@ namespace HVVEDA_HFT_2021221.Repository
         IQueryable<T> ReadAll();
 
         //delete
-        T DeleteOne(int id);
+        void DeleteOne(int id);
 
     }
 }
