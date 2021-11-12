@@ -23,21 +23,21 @@ namespace HVVEDA_HFT_2021221.Repository
             return ReadAll().SingleOrDefault(x => x.CleanerId == id);
         }
 
-        void ICleanerRepository.ChangeCourse(int id, Course newCourse)
+        public void ChangeCourse(int id, Course newCourse)
         {
             var toChange = GetOne(id);
             toChange.Location = newCourse;
             ctx.SaveChanges();
         }
 
-        void ICleanerRepository.ChangePosition(int id, string newPosition)
+        public void ChangePosition(int id, string newPosition)
         {
             var toChange = GetOne(id);
             toChange.Position = newPosition;
             ctx.SaveChanges();
         }
 
-        void ICleanerRepository.SetNewSalary(int id, int newAmount)
+        public void SetNewSalary(int id, int newAmount)
         {
             var toChange = GetOne(id);
             toChange.Salary = newAmount;

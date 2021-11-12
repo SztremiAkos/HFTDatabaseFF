@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    class CourseRepository : Repository<Course>,ICourseRepository
+    public class CourseRepository : Repository<Course>,ICourseRepository
     {
         public CourseRepository(DbContext ctx) : base(ctx) { }
 

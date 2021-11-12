@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    class StudentRepository : Repository<Student>, IStudentRepository
+    public class StudentRepository : Repository<Student>, IStudentRepository
     {
         public StudentRepository(DbContext ctx): base(ctx) { }
         public override void DeleteOne(int id)

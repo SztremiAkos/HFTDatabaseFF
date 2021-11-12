@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    class TeacherRepository : Repository<Teacher>,ITeacherRepository
+    public class TeacherRepository : Repository<Teacher>,ITeacherRepository
     {
         public TeacherRepository(DbContext ctx) : base(ctx) { }
         public void ChangeSalary(int id, int newsalary)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    interface ICleanerRepository
+    public interface ICleanerRepository
     {
         void ChangeCourse(int id, Course newCourse);
         void ChangePosition(int id, string newPosition);

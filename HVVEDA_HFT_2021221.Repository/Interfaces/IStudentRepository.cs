@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    interface IStudentRepository 
+    public interface IStudentRepository 
     {
         ICollection<Course> GetAllCourses(int id);
     }
