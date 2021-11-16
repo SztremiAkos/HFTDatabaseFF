@@ -49,6 +49,9 @@ namespace HVVEDA_HFT_2021221.Models
         public string Location { get; set; } //
 
         [Required]
+        public string Type { get; set; }
+
+        [Required]
         public TimeSpan Length { get; set; } //
         
         public int? StudentsCount { get; set; }

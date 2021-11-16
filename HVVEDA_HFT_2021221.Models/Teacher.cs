@@ -19,6 +19,9 @@ namespace HVVEDA_HFT_2021221.Models
 
         [Required]
         public string Firstname { get; set; }
+
+        [Required]
+        public int Age { get; set; }
         public string LastName { get; set; }
         public int? Salary { get; set; }
 

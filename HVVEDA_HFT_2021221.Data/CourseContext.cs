@@ -55,32 +55,32 @@ namespace HVVEDA_HFT_2021221.Data
            }
            );
 
-            Student student1 = new Student() { StudentID = 1, Firstname = "John", LastName = "Cena" };
-            Student student2 = new Student() { StudentID = 2, Firstname = "Benedek", LastName = "Elek" };
-            Student student3 = new Student() { StudentID = 3, Firstname = "Kiss", LastName = "Laszlo" };
-            Student student4 = new Student() { StudentID = 4, Firstname = "Olah", LastName = "Kiara" };
-            Student student5 = new Student() { StudentID = 5, Firstname = "Lakatos", LastName = "Brendon" };
-            Student student6 = new Student() { StudentID = 6, Firstname = "Sztremi", LastName = "Akos" };
-            Student student7 = new Student() { StudentID = 7, Firstname = "Dwayne", LastName = "Johnson" };
+            Student student1 = new() { StudentID = 1, Firstname = "John", LastName = "Cena" };
+            Student student2 = new() { StudentID = 2, Firstname = "Benedek", LastName = "Elek" };
+            Student student3 = new() { StudentID = 3, Firstname = "Kiss", LastName = "Laszlo" };
+            Student student4 = new() { StudentID = 4, Firstname = "Olah", LastName = "Kiara" };
+            Student student5 = new() { StudentID = 5, Firstname = "Lakatos", LastName = "Brendon" };
+            Student student6 = new() { StudentID = 6, Firstname = "Sztremi", LastName = "Akos" };
+            Student student7 = new() { StudentID = 7, Firstname = "Dwayne", LastName = "Johnson" };
             //--------------------------------------------
-            Teacher teacher1 = new Teacher() { TeacherId = 1, Firstname = "Ablakos", LastName = "Laszlo", Salary = 500 };
-            Teacher teacher2 = new Teacher() { TeacherId = 2, Firstname = "Asztalos", LastName = "Sandor", Salary = 333 };
-            Teacher teacher3 = new Teacher() { TeacherId = 3, Firstname = "Kovacs", LastName = "Mate", Salary = 945 };
-            Teacher teacher4 = new Teacher() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200 };
-            Teacher teacher5 = new Teacher() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000 };
+            Teacher teacher1 = new() { TeacherId = 1, Firstname = "Ablakos", LastName = "Laszlo", Salary = 500, Age = 30 };
+            Teacher teacher2 = new() { TeacherId = 2, Firstname = "Asztalos", LastName = "Sandor", Salary = 333, Age = 45 };
+            Teacher teacher3 = new() { TeacherId = 3, Firstname = "Kovacs", LastName = "Mate", Salary = 945, Age = 40 };
+            Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
+            Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new Course() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), StudentsCount = 45 };
-            Course course2 = new Course() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0), StudentsCount = 45 };
-            Course course3 = new Course() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0), StudentsCount = 45 };
-            Course course4 = new Course() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = new TimeSpan(0, 45, 0), StudentsCount = 45 };
-            Course course5 = new Course() { CourseID = 5, Title = "Mc'Donalds basics", Credits = 1, Location = "1.01", Length = new TimeSpan(2, 0, 0), StudentsCount = 45 };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), StudentsCount = 400 ,Type = "natural science " };
+            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0), StudentsCount = 30 ,Type = "Programming" };
+            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0), StudentsCount = 230 ,Type = "Programming"};
+            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = new TimeSpan(0, 45, 0), StudentsCount = 40 , Type = "natural science" };
+            Course course5 = new () { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "1.01", Length = new TimeSpan(2, 0, 0), StudentsCount = 15,Type = "McDonald's" };
             //--------------------------------------------
 
-            Cleaner cleaner1 = new Cleaner() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
-            Cleaner cleaner2 = new Cleaner() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new Cleaner() { CleanerId = 3, Name = "Francisco", Salary = null, Position = "Fired" };
-            Cleaner cleaner4 = new Cleaner() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
-            Cleaner cleaner5 = new Cleaner() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
+            Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
+            Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
+            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = null, Position = "Fired" };
+            Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
+            Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
             course1.StudentId = student1.StudentID;
             course1.TeacherId = teacher1.TeacherId;

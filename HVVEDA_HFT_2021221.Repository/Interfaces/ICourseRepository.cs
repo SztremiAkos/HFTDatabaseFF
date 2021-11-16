@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Repository
 {
-    public interface ICourseRepository
+    public interface ICourseRepository : IRepository<Course>
     {
         void ChangeCreditAmount(int id, int newCreditAmount);
+        void AddNewCourse(Course course);
         void ChangeTitle(int id, string NewTitle);
         void ChangeLocation(int id, string NewTitle);
+        public void UpdateCourse(Course course);
     }
 }
