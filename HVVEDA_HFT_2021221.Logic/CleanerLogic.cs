@@ -24,12 +24,14 @@ namespace HVVEDA_HFT_2021221.Logic
         #endregion
 
         #region noncrud
+
         int? GetLeastSalary();
         IList<Cleaner> FirstFloorWorkers();
         #endregion
     }
     public class CleanerLogic : ICleanerLogic
     {
+
         private ICleanerRepository cleanerRepo;
 
         public CleanerLogic(ICleanerRepository cleanerRepo)
@@ -92,6 +94,8 @@ namespace HVVEDA_HFT_2021221.Logic
         {
             return cleanerRepo.ReadAll().OrderByDescending(x => x.Salary).FirstOrDefault().Salary;
         }
+
+
 
         public void SetNewSalary(int id, int newAmount)
         {

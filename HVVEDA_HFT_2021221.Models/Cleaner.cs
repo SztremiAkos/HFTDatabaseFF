@@ -21,5 +21,8 @@ namespace HVVEDA_HFT_2021221.Models
         public string Position { get; set; }
         public virtual Course Location { get; set; }
 
+        [ForeignKey(nameof(Location))]
+        public virtual int CourseId { get; set; }
+
     }
 }

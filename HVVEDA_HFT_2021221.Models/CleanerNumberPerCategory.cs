@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Models
 {
-    public class StudentNumberPerCategory
+    public class CleanerNumberPerCategory
     {
-        public string Category;
-        public int? StudentCount;
+        public string Location;
+        public int? CleanerCount;
         public override string ToString()
         {
-            return @"\t { "+Category+" }  -- { "+StudentCount+" }";
+            return @"\t { "+Location+" }  -- { "+CleanerCount+" }";
         }
 
     }

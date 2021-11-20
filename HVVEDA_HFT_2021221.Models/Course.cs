@@ -35,6 +35,7 @@ namespace HVVEDA_HFT_2021221.Models
         [ForeignKey(nameof(Teacher))]
         public int TeacherId { get; set; }
 
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int CourseID { get; set; } //

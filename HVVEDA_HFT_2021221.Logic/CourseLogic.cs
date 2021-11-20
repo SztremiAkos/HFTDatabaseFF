@@ -16,12 +16,14 @@ namespace HVVEDA_HFT_2021221.Logic
         void ChangeTitle(int id, string NewTitle);
         void ChangeLocation(int id, string NewLocation);
         public void UpdateCourse(Course course);
+        void DeleteCourse(int id);
         #endregion
 
         #region NON-CRUD
         Teacher GetTheYoungestTeacher();
         Cleaner GetCleanerWithTheLongestName();
-        IEnumerable<StudentNumberPerCategory> StudentNumberPerCategories();
+        IEnumerable<CleanerNumberPerCategory> CleanerNumberPerCateg();
+        IEnumerable<Teacher> GetTheDirtiestCoursesTeacher();
 
 
 
@@ -33,12 +35,31 @@ namespace HVVEDA_HFT_2021221.Logic
         ICourseRepository courseRepo;
         ITeacherRepository teacherRepo;
         ICleanerRepository cleanerRepo;
+        IStudentRepository studentRepo;
 
-        public CourseLogic(ICourseRepository courseRepo, ITeacherRepository teacherRepo, ICleanerRepository cleanerRepo)
+        public CourseLogic(ICourseRepository courseRepo, ITeacherRepository teacherRepo, ICleanerRepository cleanerRepo, IStudentRepository studentRepo)
         {
             this.courseRepo = courseRepo;
             this.teacherRepo = teacherRepo;
             this.cleanerRepo = cleanerRepo;
+            this.studentRepo = studentRepo;
+        }
+         
+        //TODO noncrud 1kesz
+        public IEnumerable<Teacher> GetTheDirtiestCoursesTeacher()
+        {
+            var dirtyC_sub = from x in courseRepo.ReadAll()
+                             where x.Cleaner.Position.Equals("Fired")
+                             select x;
+
+            
+            var dirtyC_SingleSub = dirtyC_sub.FirstOrDefault();
+
+            var dirtyClass = from x in teacherRepo.ReadAll()
+                             where dirtyC_SingleSub.TeacherId.Equals(x.TeacherId)
+                             select x;
+            return dirtyClass;
+            
         }
 
         public void AddNewCourse(Course course)
@@ -82,14 +103,43 @@ namespace HVVEDA_HFT_2021221.Logic
             return teacherRepo.ReadAll().Where(x => x.Age == minAge).FirstOrDefault();
         }
 
-        public IEnumerable<StudentNumberPerCategory> StudentNumberPerCategories()
+        //TODO noncrud 2kesz
+        public IEnumerable<CleanerNumberPerCategory> CleanerNumberPerCateg()
         {
-            return courseRepo.ReadAll().GroupBy(x => x.Type).Select(x => new StudentNumberPerCategory { Category = x.Key, StudentCount = x.Count() });
+            var cleanergrp_sub = from x in cleanerRepo.ReadAll()
+                                 group x by x.Location into g
+                                 select new
+                                 {
+                                     cleaner = g.Key,
+                                     cleaner_no = g.Count()
+                                 };
+            var cleanergrp = from x in courseRepo.ReadAll()
+                             join z in cleanergrp_sub on x.CourseID equals z.cleaner.CourseID
+                             let joinedItem = new { x.CourseID, x.Type, z.cleaner_no }
+                             group joinedItem by joinedItem.Type into grp
+                             select new CleanerNumberPerCategory
+                             {
+                                 Location = grp.Key,
+                                 CleanerCount = grp.Sum(x => x.cleaner_no)
+
+
+                             };
+            return cleanergrp;
         }
 
         public void UpdateCourse(Course course)
         {
             courseRepo.UpdateCourse(course);
         }
+
+        public void DeleteCourse(int id)
+        {
+            if (id < courseRepo.ReadAll().Count())
+                courseRepo.DeleteOne(id);
+            else
+                throw new IndexOutOfRangeException("~~~Index is too big!~~~");
+            
+        }
+
     }
 }
