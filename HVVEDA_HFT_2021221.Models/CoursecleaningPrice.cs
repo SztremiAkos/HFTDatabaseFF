@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Models
 {
-    public class StudentNumberPerTeacher
+    public class CoursecleaningPrice
     {
-        public Teacher teacher;
-        public int studentNumber;
+        public Course course;
+        public int price;
     }
 }

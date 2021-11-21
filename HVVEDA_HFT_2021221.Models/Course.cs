@@ -12,11 +12,11 @@ namespace HVVEDA_HFT_2021221.Models
     [Table("Courses")]
     public class Course
     {
-        //1 course --> n Student
+        //1 course --> 1 Student
         #region keys
 
 
-       // [NotMapped]
+        [NotMapped]
         public virtual Cleaner Cleaner { get; set; }
 
 

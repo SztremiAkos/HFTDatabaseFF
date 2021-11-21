@@ -25,6 +25,9 @@ namespace HVVEDA_HFT_2021221.Logic
         IEnumerable<CleanerNumberPerCategory> CleanerNumberPerCateg();
         IEnumerable<Teacher> GetTheDirtiestCoursesTeacher();
 
+        IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice();
+        IEnumerable<KeyValuePair<Teacher, double?>> TeacherSalaryPerCourse();
+
 
 
 
@@ -44,7 +47,7 @@ namespace HVVEDA_HFT_2021221.Logic
             this.cleanerRepo = cleanerRepo;
             this.studentRepo = studentRepo;
         }
-         
+
         //TODO noncrud 1kesz
         public IEnumerable<Teacher> GetTheDirtiestCoursesTeacher()
         {
@@ -52,14 +55,14 @@ namespace HVVEDA_HFT_2021221.Logic
                              where x.Cleaner.Position.Equals("Fired")
                              select x;
 
-            
+
             var dirtyC_SingleSub = dirtyC_sub.FirstOrDefault();
 
             var dirtyClass = from x in teacherRepo.ReadAll()
                              where dirtyC_SingleSub.TeacherId.Equals(x.TeacherId)
                              select x;
             return dirtyClass;
-            
+
         }
 
         public void AddNewCourse(Course course)
@@ -138,8 +141,24 @@ namespace HVVEDA_HFT_2021221.Logic
                 courseRepo.DeleteOne(id);
             else
                 throw new IndexOutOfRangeException("~~~Index is too big!~~~");
-            
+
         }
 
+
+        //TODO 4kesz
+        public IEnumerable<KeyValuePair<string,int?>> CourseCleaningPrice()
+        {
+            return from x in courseRepo.ReadAll()
+                   group x by x.Title into g
+                   select new KeyValuePair<string, int?> ( g.Key, g.Sum(x => x.Cleaner.Salary) );
+
+        }
+         //TODO 5 noncrud kesz
+        public IEnumerable<KeyValuePair<Teacher, double?>> TeacherSalaryPerCourse()
+        {
+            return from x in courseRepo.ReadAll()
+                   group x by x.Teacher into g
+                   select new KeyValuePair<Teacher, double?>(g.Key, g.Average(x => x.Teacher.Salary));
+        }
     }
 }
