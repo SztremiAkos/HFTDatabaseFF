@@ -35,7 +35,15 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public void AddNewStudent(Student student)
         {
-            studentRepo.AddNewStudent(student);
+            if (student.Firstname !=null || student.Firstname !="")
+            {
+                studentRepo.AddNewStudent(student);
+            }
+            else
+            {
+                throw new NullReferenceException("Name cant be null!");
+            }
+            
         }
 
         public void DelStudentbyId(int id)

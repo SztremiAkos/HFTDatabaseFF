@@ -30,6 +30,10 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public void AddNewTeacher(Teacher teacher)
         {
+            if (teacher.Age<20 || teacher.Age>100 )
+            {
+                throw new IndexOutOfRangeException("Invalid Teacher Age");
+            }
             teacherRepo.AddNewTeacher(teacher);
         }
 

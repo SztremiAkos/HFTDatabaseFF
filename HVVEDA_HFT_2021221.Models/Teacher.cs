@@ -11,6 +11,10 @@ namespace HVVEDA_HFT_2021221.Models
     [Table("Teachers")]
     public class Teacher
     {
+        public Teacher()
+        {
+            this.Courses = new List<Course>();
+        }
 
         // 1 teacher -> 1 course
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

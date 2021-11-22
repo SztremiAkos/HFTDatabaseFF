@@ -13,24 +13,88 @@ namespace HVVEDA_HFT_2021221.Test
 {
     class Tests
     {
-        CleanerLogic cleanerLogic;
-        TeacherLogic teacherLogic;
-        StudentLogic studentLogic;
-        CourseLogic courseLogic;
-        public  Tests()
-        {
-            Teacher fakeTeacher = new Teacher()
-            {
-                LastName = "Benedek",
-                Firstname = "Laszlo",
-                Age = 45,
-                Salary = 12000
+        CleanerLogic cleanerLogic { get; set; }
+        TeacherLogic teacherLogic { get; set; }
+        StudentLogic studentLogic { get; set; }
+        CourseLogic courseLogic { get; set; }
 
-            };
-            var mockCleanerRepo = new  Mock<ICleanerRepository>();
+
+        [SetUp]
+        public void SetUp()
+        {
+            var mockCleanerRepo = new Mock<ICleanerRepository>();
             var mockTeacherRepo = new Mock<ITeacherRepository>();
-            var mockCourseRepo = new Mock<ICleanerRepository>();
+            var mockCourseRepo = new Mock<ICourseRepository>();
             var mockStudentRepo = new Mock<IStudentRepository>();
+
+            mockCourseRepo.Setup(x => x.GetOne(It.IsAny<int>())).Returns(
+                new Course()
+                {
+                    CourseID = 3,
+                    Title = "Advanced development techniques",
+                    Credits = 7,
+                    Location = "F03",
+                    Length = new TimeSpan(3, 30, 0),
+                    Type = "Programming"
+                });
+            mockTeacherRepo.Setup(x => x.ReadAll()).Returns(this.FakeTeacherRepo);
+            mockCleanerRepo.Setup(x => x.ReadAll()).Returns(this.FakeCleanerRepo);
+            mockCourseRepo.Setup(x => x.ReadAll()).Returns(this.FakeCourseRepo);
+            mockStudentRepo.Setup(x => x.ReadAll()).Returns(this.FakeStudentRepo);
+
+            this.studentLogic = new StudentLogic(mockStudentRepo.Object, mockCourseRepo.Object);
+            this.teacherLogic = new TeacherLogic(mockTeacherRepo.Object);
+            this.cleanerLogic = new CleanerLogic(mockCleanerRepo.Object);
+            this.courseLogic = new CourseLogic(mockCourseRepo.Object, mockTeacherRepo.Object, mockCleanerRepo.Object, mockStudentRepo.Object);
+        }
+        [Test]
+        public void GetOneCourse()
+        {
+            var CourseItem = this.courseLogic.GetOne(3);
+
+            Assert.That(CourseItem.Title, Is.EqualTo("Advanced development techniques"));
+        }
+
+        [TestCase("", false)]
+        [TestCase("History", true)]
+        public void CourseCreateThrowsException(string value, bool result)
+        {
+            if (result)
+            {
+                Assert.That(() => courseLogic.AddNewCourse(new Course()
+                {
+                    Title = value
+                }), Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => courseLogic.AddNewCourse(new Course()
+                {
+                    Title = value
+                }), Throws.TypeOf<NullReferenceException>());
+            }
+
+        }
+
+
+        [TestCase(-1)]
+        [TestCase(-10)]
+        [TestCase(101)]
+        public void TeacHerCreateThrowsException(int age)
+        {
+            Assert.That(()=>teacherLogic.AddNewTeacher(new Teacher() { Firstname = "Laci",Age = age}),Throws.TypeOf<IndexOutOfRangeException>());
+        }
+
+        [Test]
+        public void CleanerNumberPerCateg()
+        {
+            var Cleanernumber = courseLogic.CleanerNumberPerCateg().ToArray();
+            Assert.That(Cleanernumber[0].CleanerCount, Is.EqualTo(1));
+        }
+        [Test]
+        public void CleanerReadAll()
+        {
+            Assert.That(cleanerLogic.ReadAll().Count(), Is.EqualTo(5));
         }
         private IQueryable<Teacher> FakeTeacherRepo()
         {
@@ -104,6 +168,13 @@ namespace HVVEDA_HFT_2021221.Test
             course5.StudentId = student6.StudentID; student6.Courses.Add(course5);
             course5.TeacherId = teacher5.TeacherId; teacher5.Courses.Add(course5);
             course5.CleanerId = cleaner5.CleanerId;
+
+            cleaner1.Location = course1;
+            cleaner2.Location = course2;
+            cleaner3.Location = course3;
+            cleaner4.Location = course4;
+            cleaner5.Location = course5;
+
 
             List<Teacher> items = new List<Teacher>();
             items.Add(teacher1);
@@ -187,6 +258,13 @@ namespace HVVEDA_HFT_2021221.Test
             course5.TeacherId = teacher5.TeacherId; teacher5.Courses.Add(course5);
             course5.CleanerId = cleaner5.CleanerId;
 
+            cleaner1.Location = course1;
+            cleaner2.Location = course2;
+            cleaner3.Location = course3;
+            cleaner4.Location = course4;
+            cleaner5.Location = course5;
+
+
             List<Course> items = new List<Course>();
             items.Add(course1);
             items.Add(course2);
@@ -268,6 +346,12 @@ namespace HVVEDA_HFT_2021221.Test
             course5.StudentId = student6.StudentID; student6.Courses.Add(course5);
             course5.TeacherId = teacher5.TeacherId; teacher5.Courses.Add(course5);
             course5.CleanerId = cleaner5.CleanerId;
+
+            cleaner1.Location = course1;
+            cleaner2.Location = course2;
+            cleaner3.Location = course3;
+            cleaner4.Location = course4;
+            cleaner5.Location = course5;
 
             List<Student> items = new List<Student>();
             items.Add(student1);
@@ -352,6 +436,12 @@ namespace HVVEDA_HFT_2021221.Test
             course5.StudentId = student6.StudentID; student6.Courses.Add(course5);
             course5.TeacherId = teacher5.TeacherId; teacher5.Courses.Add(course5);
             course5.CleanerId = cleaner5.CleanerId;
+
+            cleaner1.Location = course1;
+            cleaner2.Location = course2;
+            cleaner3.Location = course3;
+            cleaner4.Location = course4;
+            cleaner5.Location = course5;
 
             List<Cleaner> items = new List<Cleaner>();
             items.Add(cleaner1);

@@ -19,7 +19,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         void UpdateCleaner(Cleaner cleaner);
         void SetNewSalary(int id, int newAmount);
-        IList<Cleaner> GetAllCleaners();
+        IList<Cleaner> ReadAll();
 
         #endregion
 
@@ -32,12 +32,13 @@ namespace HVVEDA_HFT_2021221.Logic
     public class CleanerLogic : ICleanerLogic
     {
 
+        public CleanerLogic(ICleanerRepository cleanerLogic)
+        {
+            this.cleanerRepo = cleanerLogic;
+        }
+
         private ICleanerRepository cleanerRepo;
 
-        public CleanerLogic(ICleanerRepository cleanerRepo)
-        {
-            this.cleanerRepo = cleanerRepo;
-        }
 
         public void AddNewCleaner(Cleaner cleaner)
         {
@@ -77,7 +78,7 @@ namespace HVVEDA_HFT_2021221.Logic
             return cleanerRepo.ReadAll().Where(x => x.Location.ToString().ToUpper().Contains('F')).ToList();
         }
 
-        public IList<Cleaner> GetAllCleaners()
+        public IList<Cleaner> ReadAll()
         {
             return cleanerRepo.ReadAll().ToList();
         }
