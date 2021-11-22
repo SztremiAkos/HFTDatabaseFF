@@ -76,15 +76,45 @@ namespace HVVEDA_HFT_2021221.Test
 
         }
 
+        [TestCase(0, 2)]
+        [TestCase(1, 1)]
+        [TestCase(2, 1)]
+        [TestCase(3, 1)]
+        public void StudentCountPerClassRoom_GivesTheRightAmount(int idx, int amount)
+        {
+            var asd = studentLogic.StudentCountPerClassRoom().OrderByDescending(x => x.StudentNumber).ToArray();
+            ;
+            Assert.That(studentLogic.StudentCountPerClassRoom().OrderByDescending(x => x.StudentNumber).ToArray()[idx].StudentNumber, Is.EqualTo(amount));
+        }
+
+        [TestCase(0, 15000d)]
+        [TestCase(1, 945)]
+        [TestCase(2, 500)]
+        [TestCase(3, 333)]
+        [TestCase(4, 200)]
+        public void TeacherSalaryPerCourse_ReturnsTheCorrectAmountInOrder(int idx, double? value)
+        {
+            var salary = courseLogic.TeacherSalaryPerCourse().OrderByDescending(x => x.Value).ToArray();
+            Assert.That(salary[idx].Value, Is.EqualTo(value));
+        }
+
+
+
 
         [TestCase(-1)]
         [TestCase(-10)]
         [TestCase(101)]
-        public void TeacHerCreateThrowsException(int age)
+        public void TeacherCreateThrowsException(int age)
         {
-            Assert.That(()=>teacherLogic.AddNewTeacher(new Teacher() { Firstname = "Laci",Age = age}),Throws.TypeOf<IndexOutOfRangeException>());
+            Assert.That(() => teacherLogic.AddNewTeacher(new Teacher() { Firstname = "Laci", Age = age }), Throws.TypeOf<IndexOutOfRangeException>());
         }
 
+        [Test]
+        public void GetTheDirtiestCoursesTeacher_IsCorrect()
+        {
+            var dirtyTeacher = courseLogic.GetTheDirtiestCoursesTeacher().FirstOrDefault();
+            Assert.That(dirtyTeacher.TeacherId, Is.EqualTo(3));
+        }
         [Test]
         public void CleanerNumberPerCateg()
         {
@@ -102,9 +132,6 @@ namespace HVVEDA_HFT_2021221.Test
             Student student2 = new() { StudentID = 2, Firstname = "Benedek", LastName = "Elek" };
             Student student3 = new() { StudentID = 3, Firstname = "Kiss", LastName = "Laszlo" };
             Student student4 = new() { StudentID = 4, Firstname = "Olah", LastName = "Kiara" };
-            Student student5 = new() { StudentID = 5, Firstname = "Lakatos", LastName = "Brendon" };
-            Student student6 = new() { StudentID = 6, Firstname = "Sztremi", LastName = "Akos" };
-            Student student7 = new() { StudentID = 7, Firstname = "Dwayne", LastName = "Johnson" };
             //--------------------------------------------
             Teacher teacher1 = new() { TeacherId = 1, Firstname = "Ablakos", LastName = "Laszlo", Salary = 500, Age = 30 };
             Teacher teacher2 = new() { TeacherId = 2, Firstname = "Asztalos", LastName = "Sandor", Salary = 333, Age = 45 };
@@ -129,9 +156,6 @@ namespace HVVEDA_HFT_2021221.Test
             student2.Courses = new List<Course>();
             student3.Courses = new List<Course>();
             student4.Courses = new List<Course>();
-            student5.Courses = new List<Course>();
-            student6.Courses = new List<Course>();
-            student7.Courses = new List<Course>();
 
             teacher1.Courses = new List<Course>();
             teacher2.Courses = new List<Course>();
@@ -140,34 +164,39 @@ namespace HVVEDA_HFT_2021221.Test
             teacher5.Courses = new List<Course>();
 
             course1.StudentId = student1.StudentID; student1.Courses.Add(course1);
+            course1.Student = student1;
             course1.TeacherId = teacher1.TeacherId; teacher1.Courses.Add(course1);
+            course1.Teacher = teacher1;
             course1.CleanerId = cleaner1.CleanerId;
+            course1.Cleaner = cleaner1;
 
-            course2.StudentId = student1.StudentID; student1.Courses.Add(course2);
             course2.StudentId = student2.StudentID; student2.Courses.Add(course2);
+            course2.Student = student2;
             course2.TeacherId = teacher2.TeacherId; teacher2.Courses.Add(course2);
+            course2.Teacher = teacher2;
             course2.CleanerId = cleaner2.CleanerId;
+            course2.Cleaner = cleaner2;
 
-            course3.StudentId = student3.StudentID; student3.Courses.Add(course3);
             course3.StudentId = student4.StudentID; student4.Courses.Add(course3);
-            course3.StudentId = student5.StudentID; student5.Courses.Add(course3);
+            course3.Student = student3;
             course3.TeacherId = teacher3.TeacherId; teacher3.Courses.Add(course3);
+            course2.Teacher = teacher2;
             course3.CleanerId = cleaner3.CleanerId;
+            course3.Cleaner = cleaner3;
 
-            course4.StudentId = student7.StudentID; student7.Courses.Add(course4);
-            course4.StudentId = student6.StudentID; student6.Courses.Add(course4);
-            course4.StudentId = student5.StudentID; student5.Courses.Add(course4);
-            course4.StudentId = student1.StudentID; student1.Courses.Add(course4);
+            course4.StudentId = student3.StudentID; student3.Courses.Add(course4);
+            course4.Student = student4;
             course4.TeacherId = teacher4.TeacherId; teacher4.Courses.Add(course4);
+            course2.Teacher = teacher2;
             course4.CleanerId = cleaner4.CleanerId;
+            course4.Cleaner = cleaner4;
 
             course5.StudentId = student1.StudentID; student1.Courses.Add(course5);
-            course5.StudentId = student2.StudentID; student2.Courses.Add(course5);
-            course5.StudentId = student3.StudentID; student3.Courses.Add(course5);
-            course5.StudentId = student7.StudentID; student7.Courses.Add(course5);
-            course5.StudentId = student6.StudentID; student6.Courses.Add(course5);
+            course5.Student = student1;
             course5.TeacherId = teacher5.TeacherId; teacher5.Courses.Add(course5);
+            course2.Teacher = teacher2;
             course5.CleanerId = cleaner5.CleanerId;
+            course5.Cleaner = cleaner5;
 
             cleaner1.Location = course1;
             cleaner2.Location = course2;
@@ -229,40 +258,39 @@ namespace HVVEDA_HFT_2021221.Test
             teacher5.Courses = new List<Course>();
 
             course1.StudentId = student1.StudentID; student1.Courses.Add(course1);
+            course1.Student = student1;
             course1.TeacherId = teacher1.TeacherId; teacher1.Courses.Add(course1);
+            course1.Teacher = teacher1;
             course1.CleanerId = cleaner1.CleanerId;
+            course1.Cleaner = cleaner1;
 
-            course2.StudentId = student1.StudentID; student1.Courses.Add(course2);
             course2.StudentId = student2.StudentID; student2.Courses.Add(course2);
+            course2.Student = student2;
             course2.TeacherId = teacher2.TeacherId; teacher2.Courses.Add(course2);
+            course2.Teacher = teacher2;
             course2.CleanerId = cleaner2.CleanerId;
+            course2.Cleaner = cleaner2;
 
-            course3.StudentId = student3.StudentID; student3.Courses.Add(course3);
             course3.StudentId = student4.StudentID; student4.Courses.Add(course3);
-            course3.StudentId = student5.StudentID; student5.Courses.Add(course3);
+            course3.Student = student3;
             course3.TeacherId = teacher3.TeacherId; teacher3.Courses.Add(course3);
+            course3.Teacher = teacher3;
             course3.CleanerId = cleaner3.CleanerId;
+            course3.Cleaner = cleaner3;
 
-            course4.StudentId = student7.StudentID; student7.Courses.Add(course4);
-            course4.StudentId = student6.StudentID; student6.Courses.Add(course4);
-            course4.StudentId = student5.StudentID; student5.Courses.Add(course4);
-            course4.StudentId = student1.StudentID; student1.Courses.Add(course4);
+            course4.StudentId = student3.StudentID; student3.Courses.Add(course4);
+            course4.Student = student4;
             course4.TeacherId = teacher4.TeacherId; teacher4.Courses.Add(course4);
+            course4.Teacher = teacher4;
             course4.CleanerId = cleaner4.CleanerId;
+            course4.Cleaner = cleaner4;
 
             course5.StudentId = student1.StudentID; student1.Courses.Add(course5);
-            course5.StudentId = student2.StudentID; student2.Courses.Add(course5);
-            course5.StudentId = student3.StudentID; student3.Courses.Add(course5);
-            course5.StudentId = student7.StudentID; student7.Courses.Add(course5);
-            course5.StudentId = student6.StudentID; student6.Courses.Add(course5);
+            course5.Student = student1;
             course5.TeacherId = teacher5.TeacherId; teacher5.Courses.Add(course5);
+            course5.Teacher = teacher5;
             course5.CleanerId = cleaner5.CleanerId;
-
-            cleaner1.Location = course1;
-            cleaner2.Location = course2;
-            cleaner3.Location = course3;
-            cleaner4.Location = course4;
-            cleaner5.Location = course5;
+            course5.Cleaner = cleaner5;
 
 
             List<Course> items = new List<Course>();

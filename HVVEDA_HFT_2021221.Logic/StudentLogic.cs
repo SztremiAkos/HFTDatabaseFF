@@ -79,25 +79,15 @@ namespace HVVEDA_HFT_2021221.Logic
         {
             studentRepo.UpdateStudent(student);
         }
-        //TODO noncrud 3kesz
         public IEnumerable<StudentcountPerClassRoom> StudentCountPerClassRoom()
         {
-            var studPerClass_sub = from x in courseRepo.ReadAll()
-                                   group x by x.Location into g
-                                   select new
-                                   {
-                                       LOCATION = g.Key,
-                                       Class_Number = g.Count()
-                                   };
             var StudPerClass = from x in courseRepo.ReadAll()
-                               join z in studPerClass_sub on x.Location equals z.LOCATION
-                               let joinedItem = new { x.Location, x.CourseID, z.Class_Number }
-                               group joinedItem by joinedItem.Location into grp
-                               select new StudentcountPerClassRoom
-                               {
-                                   Location = grp.Key,
-                                   StudentNumber = grp.Sum(x => x.Class_Number)
-                               };
+                                   group x by x.Location into g
+                                   select new StudentcountPerClassRoom
+                                   {
+                                       Location = g.Key,
+                                       StudentNumber = g.Count()
+                                   };
             return StudPerClass;
         }
     }

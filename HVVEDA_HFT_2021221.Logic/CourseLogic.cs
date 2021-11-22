@@ -51,16 +51,16 @@ namespace HVVEDA_HFT_2021221.Logic
             this.studentRepo = studentRepo;
         }
 
-        //TODO noncrud 1kesz
         public IEnumerable<Teacher> GetTheDirtiestCoursesTeacher()
         {
             var dirtyC_sub = from x in courseRepo.ReadAll()
-                             where x.Cleaner.Position.Equals("Fired")
+                             where x.Cleaner.Position == "Fired"
                              select x;
+            ;
 
 
             var dirtyC_SingleSub = dirtyC_sub.FirstOrDefault();
-
+            ;
             var dirtyClass = from x in teacherRepo.ReadAll()
                              where dirtyC_SingleSub.TeacherId.Equals(x.TeacherId)
                              select x;
@@ -118,7 +118,6 @@ namespace HVVEDA_HFT_2021221.Logic
             return teacherRepo.ReadAll().Where(x => x.Age == minAge).FirstOrDefault();
         }
 
-        //TODO noncrud 2kesz
         public IEnumerable<CleanerNumberPerCategory> CleanerNumberPerCateg()
         {
             var cleanergrp_sub = from x in cleanerRepo.ReadAll()
@@ -166,12 +165,13 @@ namespace HVVEDA_HFT_2021221.Logic
                    select new KeyValuePair<string, int?>(g.Key, g.Sum(x => x.Cleaner.Salary));
 
         }
-        //TODO 5 noncrud kesz
         public IEnumerable<KeyValuePair<Teacher, double?>> TeacherSalaryPerCourse()
         {
-            return from x in courseRepo.ReadAll()
-                   group x by x.Teacher into g
-                   select new KeyValuePair<Teacher, double?>(g.Key, g.Average(x => x.Teacher.Salary));
+            var asd = from x in courseRepo.ReadAll()
+                      group x by x.Teacher into g
+                      select new KeyValuePair<Teacher, double?>(g.Key, g.Average(x => x.Teacher.Salary));
+            ;
+            return asd;
         }
 
         public Course GetOne(int id)
