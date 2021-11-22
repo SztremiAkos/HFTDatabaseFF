@@ -76,6 +76,16 @@ namespace HVVEDA_HFT_2021221.Test
 
         }
 
+        [Test]
+        public void StudentCreateThrowsException()
+        {
+                Assert.That(() => studentLogic.AddNewStudent(new Student()
+                {
+                    Firstname = ""
+                }), Throws.TypeOf<NullReferenceException>());
+
+        }
+
         [TestCase(0, 2)]
         [TestCase(1, 1)]
         [TestCase(2, 1)]
@@ -95,10 +105,21 @@ namespace HVVEDA_HFT_2021221.Test
         public void TeacherSalaryPerCourse_ReturnsTheCorrectAmountInOrder(int idx, double? value)
         {
             var salary = courseLogic.TeacherSalaryPerCourse().OrderByDescending(x => x.Value).ToArray();
+            ;
             Assert.That(salary[idx].Value, Is.EqualTo(value));
         }
 
-
+        [TestCase(0,2000)]
+        [TestCase(1, 300)]
+        [TestCase(2, 200)]
+        [TestCase(3, 100)]
+        [TestCase(4, 0)]
+        public void CourseCleaningPrice(int idx, int? price)
+        {
+            var cleaningPrices = courseLogic.CourseCleaningPrice().OrderByDescending(x => x.Value).ToArray();
+            ;
+            Assert.That(cleaningPrices[idx].Value, Is.EqualTo(price));
+        }
 
 
         [TestCase(-1)]
