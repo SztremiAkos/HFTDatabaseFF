@@ -28,11 +28,10 @@ namespace HVVEDA_HFT_2021221.Models
 
 
         [NotMapped]
-        [JsonIgnore]
-        public virtual Student Student { get; set; }
+        public virtual Student? Student { get; set; }
 
         [ForeignKey(nameof(Student))]
-        public int StudentId { get; set; }
+        public int? StudentId { get; set; }
 
 
 

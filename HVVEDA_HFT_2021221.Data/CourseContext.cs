@@ -46,7 +46,7 @@ namespace HVVEDA_HFT_2021221.Data
                entity
                 .HasOne(course => course.Student)
                 .WithMany(student => student.Courses)
-                .HasForeignKey(repa => repa.StudentId)
+                .HasForeignKey(student => student.StudentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
                entity
                .HasOne(course => course.Cleaner)

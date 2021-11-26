@@ -35,17 +35,17 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public void AddNewStudent(Student student)
         {
-            if (student.Firstname ==null || student.Firstname =="")
+            if (student.Firstname == null || student.Firstname == "")
             {
                 throw new NullReferenceException("Name cant be null!");
             }
             studentRepo.AddNewStudent(student);
-            
+
         }
 
         public void DelStudentbyId(int id)
         {
-            if (id < studentRepo.ReadAll().Count())
+            if (id <= studentRepo.ReadAll().Count())
                 studentRepo.DeleteOne(id);
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");
@@ -53,7 +53,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public ICollection<Course> GetAllCourses(int id)
         {
-            if (id < studentRepo.ReadAll().Count())
+            if (id <= studentRepo.ReadAll().Count())
                 return studentRepo.GetAllCourses(id);
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");
@@ -66,7 +66,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public Student GetStudentbyId(int id)
         {
-            if (id < studentRepo.ReadAll().Count())
+            if (id <= studentRepo.ReadAll().Count())
                 return studentRepo.GetOne(id);
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");
@@ -79,12 +79,12 @@ namespace HVVEDA_HFT_2021221.Logic
         public IEnumerable<StudentcountPerClassRoom> StudentCountPerClassRoom()
         {
             var StudPerClass = from x in courseRepo.ReadAll()
-                                   group x by x.Location into g
-                                   select new StudentcountPerClassRoom
-                                   {
-                                       Location = g.Key,
-                                       StudentNumber = g.Count()
-                                   };
+                               group x by x.Location into g
+                               select new StudentcountPerClassRoom
+                               {
+                                   Location = g.Key,
+                                   StudentNumber = g.Count()
+                               };
             return StudPerClass;
         }
     }

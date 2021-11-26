@@ -20,6 +20,15 @@ namespace HVVEDA_HFT_2021221.Repository
         } //c
         public override void DeleteOne(int id)
         {
+            var stud = GetOne(id);
+            var courses = stud.Courses;
+            foreach (var item in courses)
+            {
+                if (item.StudentId == stud.StudentID)
+                {
+                    item.Student = null;
+                }
+            }
             ctx.Remove(GetOne(id));
             ctx.SaveChanges();
         } //d

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Models
@@ -13,7 +14,7 @@ namespace HVVEDA_HFT_2021221.Models
     {
         public Student()
         {
-            this.Courses = new List<Course>();
+            Courses = new HashSet<Course>();
         }
         //1 student -> n course
 
@@ -22,7 +23,11 @@ namespace HVVEDA_HFT_2021221.Models
         public int StudentID { get; set; }
         public string Firstname { get; set; }
         public string LastName { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Course> Courses { get; set; }
+
+        public int CourseCount { get { return Courses.Count; } }
 
     }
 }
