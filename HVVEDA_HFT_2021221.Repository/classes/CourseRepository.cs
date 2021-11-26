@@ -1,4 +1,5 @@
-﻿using HVVEDA_HFT_2021221.Models;
+﻿using HVVEDA_HFT_2021221.Data;
+using HVVEDA_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,6 @@ namespace HVVEDA_HFT_2021221.Repository
             toUpdate.Credits = course.Credits;
             toUpdate.Length = course.Length;
             toUpdate.Location = course.Location;
-            toUpdate.StudentsCount = course.StudentsCount;
             toUpdate.Teacher = course.Teacher;
             toUpdate.Title = course.Title;
             toUpdate.Cleaner = toUpdate.Cleaner;

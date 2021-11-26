@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Models
@@ -19,6 +20,8 @@ namespace HVVEDA_HFT_2021221.Models
         public string Name { get; set; }
         public int? Salary { get; set; }
         public string Position { get; set; }
+
+        [JsonIgnore]
         public virtual Course Location { get; set; }
 
         [ForeignKey(nameof(Location))]

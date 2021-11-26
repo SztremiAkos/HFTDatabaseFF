@@ -1,4 +1,5 @@
-﻿using HVVEDA_HFT_2021221.Models;
+﻿using HVVEDA_HFT_2021221.Data;
+using HVVEDA_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

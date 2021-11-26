@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Models
@@ -18,6 +19,7 @@ namespace HVVEDA_HFT_2021221.Models
 
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Cleaner Cleaner { get; set; }
 
 
@@ -26,11 +28,16 @@ namespace HVVEDA_HFT_2021221.Models
 
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Student Student { get; set; }
 
         [ForeignKey(nameof(Student))]
         public int StudentId { get; set; }
+
+
+
         [NotMapped]
+        [JsonIgnore]
         public virtual Teacher Teacher { get; set; }
 
         [ForeignKey(nameof(Teacher))]
@@ -54,9 +61,7 @@ namespace HVVEDA_HFT_2021221.Models
         public string Type { get; set; }
 
         [Required]
-        public TimeSpan Length { get; set; } //
-        
-        public int? StudentsCount { get; set; }
+        public TimeSpan Length { get; set; } 
 
         [MaxLength(1)]
         public int? Credits { get; set; }
