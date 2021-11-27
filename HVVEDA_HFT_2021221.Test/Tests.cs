@@ -6,8 +6,8 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace HVVEDA_HFT_2021221.Test
 {
@@ -79,10 +79,10 @@ namespace HVVEDA_HFT_2021221.Test
         [Test]
         public void StudentCreateThrowsException()
         {
-                Assert.That(() => studentLogic.AddNewStudent(new Student()
-                {
-                    Firstname = ""
-                }), Throws.TypeOf<NullReferenceException>());
+            Assert.That(() => studentLogic.AddNewStudent(new Student()
+            {
+                Firstname = ""
+            }), Throws.TypeOf<NullReferenceException>());
 
         }
 
@@ -92,9 +92,7 @@ namespace HVVEDA_HFT_2021221.Test
         [TestCase(3, 1)]
         public void StudentCountPerClassRoom_GivesTheRightAmount(int idx, int amount)
         {
-            var asd = studentLogic.StudentCountPerClassRoom().OrderByDescending(x => x.StudentNumber).ToArray();
-            ;
-            Assert.That(studentLogic.StudentCountPerClassRoom().OrderByDescending(x => x.StudentNumber).ToArray()[idx].StudentNumber, Is.EqualTo(amount));
+            Assert.That(studentLogic.StudentCountPerCategory().OrderByDescending(x => x.Value).ToArray()[idx].Value, Is.EqualTo(amount));
         }
 
         [TestCase(0, 15000d)]
@@ -109,7 +107,7 @@ namespace HVVEDA_HFT_2021221.Test
             Assert.That(salary[idx].Value, Is.EqualTo(value));
         }
 
-        [TestCase(0,2000)]
+        [TestCase(0, 2000)]
         [TestCase(1, 300)]
         [TestCase(2, 200)]
         [TestCase(3, 100)]
@@ -139,8 +137,8 @@ namespace HVVEDA_HFT_2021221.Test
         [Test]
         public void CleanerNumberPerCateg()
         {
-            var Cleanernumber = courseLogic.CleanerNumberPerCateg().ToArray();
-            Assert.That(Cleanernumber[0].CleanerCount, Is.EqualTo(1));
+            var Cleanernumber = courseLogic.CleanerNumberPerClassroom().ToArray();
+            Assert.That(Cleanernumber[0].Value, Is.EqualTo(2));
         }
         [Test]
         public void CleanerReadAll()
@@ -169,7 +167,7 @@ namespace HVVEDA_HFT_2021221.Test
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
             Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = null, Position = "Fired" };
+            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
             Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
             Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
@@ -260,7 +258,7 @@ namespace HVVEDA_HFT_2021221.Test
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
             Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = null, Position = "Fired" };
+            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
             Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
             Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
@@ -348,7 +346,7 @@ namespace HVVEDA_HFT_2021221.Test
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
             Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = null, Position = "Fired" };
+            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
             Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
             Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
@@ -438,7 +436,7 @@ namespace HVVEDA_HFT_2021221.Test
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
             Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = null, Position = "Fired" };
+            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
             Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
             Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
 

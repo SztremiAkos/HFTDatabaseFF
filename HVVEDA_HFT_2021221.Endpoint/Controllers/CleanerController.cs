@@ -1,47 +1,59 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HVVEDA_HFT_2021221.Logic;
+using HVVEDA_HFT_2021221.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HVVEDA_HFT_2021221.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CleanerController : ControllerBase
     {
-        // GET: api/<CleanerController>
+
+        ICleanerLogic cl;
+
+        public CleanerController(ICleanerLogic cl)
+        {
+            this.cl = cl;
+        }
+
+        // GET: /Cleaner
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Cleaner> Get()
         {
-            return new string[] { "value1", "value2" };
+            return cl.ReadAll();
         }
 
-        // GET api/<CleanerController>/5
+        // GET /Cleaner/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Cleaner Get(int id)
         {
-            return "value";
+            return cl.GetCleanerById(id);
         }
 
-        // POST api/<CleanerController>
+        // POST /Cleaner
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Cleaner value)
         {
+            cl.AddNewCleaner(value);
         }
 
-        // PUT api/<CleanerController>/5
+        // PUT /Cleaner/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] Cleaner value)
         {
+            cl.UpdateCleaner(value);
         }
 
-        // DELETE api/<CleanerController>/5
+        // DELETE /Cleaner/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            cl.DeleteCleaner(id);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace HVVEDA_HFT_2021221.Logic
         IList<Student> GetAllStudents();
 
         public void UpdateStudent(Student student);
-        public IEnumerable<StudentcountPerClassRoom> StudentCountPerClassRoom();
+        public IEnumerable<KeyValuePair<string, int>> StudentCountPerCategory();
 
 
     }
@@ -76,15 +76,15 @@ namespace HVVEDA_HFT_2021221.Logic
         {
             studentRepo.UpdateStudent(student);
         }
-        public IEnumerable<StudentcountPerClassRoom> StudentCountPerClassRoom()
+        public IEnumerable<KeyValuePair<string,int>> StudentCountPerCategory()
         {
+            var q = from x in courseRepo.ReadAll()
+                    select x;
             var StudPerClass = from x in courseRepo.ReadAll()
-                               group x by x.Location into g
-                               select new StudentcountPerClassRoom
-                               {
-                                   Location = g.Key,
-                                   StudentNumber = g.Count()
-                               };
+                               group x by x.Type into g
+                               select new KeyValuePair<string, int>(g.Key, g.Count());
+            ;
+
             return StudPerClass;
         }
     }

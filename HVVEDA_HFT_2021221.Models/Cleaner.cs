@@ -18,7 +18,7 @@ namespace HVVEDA_HFT_2021221.Models
 
         [Required]
         public string Name { get; set; }
-        public int? Salary { get; set; }
+        public int Salary { get; set; }
         public string Position { get; set; }
 
         [JsonIgnore]

@@ -17,16 +17,17 @@ namespace HVVEDA_HFT_2021221.Logic
         void ChangeLocation(int id, string NewLocation);
         public void UpdateCourse(Course course);
         void DeleteCourse(int id);
+        IList<Course> GetAllCourses();
         Course GetOne(int id);
         #endregion
 
         #region NON-CRUD
         Teacher GetTheYoungestTeacher();
         Cleaner GetCleanerWithTheLongestName();
-        IEnumerable<CleanerNumberPerCategory> CleanerNumberPerCateg();
+        IEnumerable<KeyValuePair<string, int?>> CleanerNumberPerClassroom();
         IEnumerable<Teacher> GetTheDirtiestCoursesTeacher();
 
-        IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice();
+        IEnumerable<KeyValuePair<string, int>> CourseCleaningPrice();
         IEnumerable<KeyValuePair<Teacher, double?>> TeacherSalaryPerCourse();
 
 
@@ -118,28 +119,12 @@ namespace HVVEDA_HFT_2021221.Logic
             return teacherRepo.ReadAll().Where(x => x.Age == minAge).FirstOrDefault();
         }
 
-        public IEnumerable<CleanerNumberPerCategory> CleanerNumberPerCateg()
+        public IEnumerable<KeyValuePair<string, int?>> CleanerNumberPerClassroom()
         {
             var cleanergrp_sub = from x in cleanerRepo.ReadAll()
                                  group x by x.Location.Location into g
-                                 select new
-                                 {
-                                     location = g.Key,
-                                     cleaner_no = g.Count()
-                                 };
-            var cleanergrp = from x in courseRepo.ReadAll()
-                             join z in cleanergrp_sub on x.Location equals z.location
-                             let joinedItem = new { x.CourseID, x.Type, z.cleaner_no }
-                             group joinedItem by joinedItem.Type into grp
-                             select new CleanerNumberPerCategory
-                             {
-                                 Location = grp.Key,
-                                 CleanerCount = grp.Count()
-
-
-                             };
-            ;
-            return cleanergrp;
+                                 select new KeyValuePair<string, int?>(g.Key, g.Count());
+            return cleanergrp_sub;
         }
 
         public void UpdateCourse(Course course)
@@ -158,12 +143,13 @@ namespace HVVEDA_HFT_2021221.Logic
 
 
         //TODO 4kesz
-        public IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice()
+        public IEnumerable<KeyValuePair<string, int>> CourseCleaningPrice()
         {
-            return from x in courseRepo.ReadAll()
-                   group x by x.Title into g
-                   select new KeyValuePair<string, int?>(g.Key, g.Sum(x => x.Cleaner.Salary));
+            var q = from x in courseRepo.ReadAll()
+                    group x by x.Title into g
+                    select new KeyValuePair<string, int>(g.Key, g.Sum(x => x.Cleaner.Salary));
 
+            return q;
         }
         public IEnumerable<KeyValuePair<Teacher, double?>> TeacherSalaryPerCourse()
         {
@@ -177,6 +163,11 @@ namespace HVVEDA_HFT_2021221.Logic
         public Course GetOne(int id)
         {
             return courseRepo.GetOne(id);
+        }
+
+        public IList<Course> GetAllCourses()
+        {
+            return courseRepo.ReadAll().ToList();
         }
     }
 }

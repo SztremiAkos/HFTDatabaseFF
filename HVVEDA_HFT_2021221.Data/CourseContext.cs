@@ -69,16 +69,17 @@ namespace HVVEDA_HFT_2021221.Data
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0),Type = "natural science " };
-            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0),Type = "Programming" };
-            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0) ,Type = "Programming"};
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "natural science" };
+            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
+            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
             Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = new TimeSpan(0, 45, 0), Type = "natural science" };
-            Course course5 = new () { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = new TimeSpan(2, 0, 0),Type = "McDonald's" };
+            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "McDonald's" };
+            Course course6 = new() { CourseID = 6, Title = "Calculus 2", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "natural science" };
             //--------------------------------------------
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
             Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = null, Position = "Fired" };
+            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
             Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
             Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
@@ -87,32 +88,24 @@ namespace HVVEDA_HFT_2021221.Data
             course1.CleanerId = cleaner1.CleanerId;
 
             course2.StudentId = student1.StudentID;
-            course2.StudentId = student2.StudentID;
             course2.TeacherId = teacher2.TeacherId;
             course2.CleanerId = cleaner2.CleanerId;
 
             course3.StudentId = student3.StudentID;
-            course3.StudentId = student4.StudentID;
-            course3.StudentId = student5.StudentID;
             course3.TeacherId = teacher3.TeacherId;
             course3.CleanerId = cleaner3.CleanerId;
 
-            course4.StudentId = student7.StudentID;
-            course4.StudentId = student6.StudentID;
-            course4.StudentId = student5.StudentID;
-            course4.StudentId = student1.StudentID;
+            course4.StudentId = student4.StudentID;
             course4.TeacherId = teacher4.TeacherId;
             course4.CleanerId = cleaner4.CleanerId;
 
-            course5.StudentId = student1.StudentID;
-            course5.StudentId = student2.StudentID;
-            course5.StudentId = student3.StudentID;
-            course5.StudentId = student7.StudentID;
-            course5.StudentId = student6.StudentID;
+            course5.StudentId = student5.StudentID;
             course5.TeacherId = teacher5.TeacherId;
             course5.CleanerId = cleaner5.CleanerId;
 
-            modelBuilder.Entity<Course>().HasData(course1, course2, course3, course4, course5);
+            course6.StudentId = student1.StudentID;
+
+            modelBuilder.Entity<Course>().HasData(course1, course2, course3, course4, course5, course6);
             modelBuilder.Entity<Teacher>().HasData(teacher1, teacher2, teacher3, teacher4, teacher5);
             modelBuilder.Entity<Student>().HasData(student1, student2, student3, student4, student5, student6, student7);
             modelBuilder.Entity<Cleaner>().HasData(cleaner1, cleaner2, cleaner3, cleaner4, cleaner5);

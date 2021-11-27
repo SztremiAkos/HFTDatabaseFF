@@ -45,7 +45,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         {
             sl.UpdateStudent(student);
         }
-
+          
         // DELETE /student/5
         [HttpDelete("{id}")]
         public void Delete(int id)

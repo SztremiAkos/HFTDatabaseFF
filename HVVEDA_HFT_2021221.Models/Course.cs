@@ -20,11 +20,11 @@ namespace HVVEDA_HFT_2021221.Models
 
         [NotMapped]
         [JsonIgnore]
-        public virtual Cleaner Cleaner { get; set; }
+        public virtual Cleaner? Cleaner { get; set; }
 
 
         [ForeignKey(nameof(Cleaner))]
-        public int CleanerId { get; set; }
+        public int? CleanerId { get; set; }
 
 
         [NotMapped]

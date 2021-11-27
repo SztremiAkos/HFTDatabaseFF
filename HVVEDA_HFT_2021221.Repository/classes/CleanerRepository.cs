@@ -21,6 +21,9 @@ namespace HVVEDA_HFT_2021221.Repository
         }  //c
         public override void DeleteOne(int id)
         {
+            var cleaner = GetOne(id);
+            var course = cleaner.Location;
+            course.Cleaner = null;
             ctx.Remove(GetOne(id));
             ctx.SaveChanges();
         } //d

@@ -1,47 +1,58 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HVVEDA_HFT_2021221.Logic;
+using HVVEDA_HFT_2021221.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HVVEDA_HFT_2021221.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CourseController : ControllerBase
     {
-        // GET: api/<CourseController>
+        ICourseLogic cl;
+
+        public CourseController(ICourseLogic cl)
+        {
+            this.cl = cl;
+        }
+
+        // GET: /Course
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Course> Get()
         {
-            return new string[] { "value1", "value2" };
+            return cl.GetAllCourses();
         }
 
-        // GET api/<CourseController>/5
+        // GET /Course/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Course Get(int id)
         {
-            return "value";
+            return cl.GetOne(id);
         }
 
-        // POST api/<CourseController>
+        // POST /course
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Course value)
         {
+            cl.AddNewCourse(value);
         }
 
-        // PUT api/<CourseController>/5
+        // PUT /course/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] Course value)
         {
+            cl.UpdateCourse(value);
         }
 
-        // DELETE api/<CourseController>/5
+        // DELETE /course/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            cl.DeleteCourse(id);
         }
     }
 }
