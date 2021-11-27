@@ -27,6 +27,16 @@ namespace HVVEDA_HFT_2021221.Repository
         public override void DeleteOne(int id)
         {
             ctx.Remove(GetOne(id));
+            var teach = GetOne(id);
+            var courses = teach.Courses;
+            foreach (var item in courses)
+            {
+                if (item.TeacherId == teach.TeacherId)
+                {
+                    item.Teacher = null;
+                }
+            }
+
             ctx.SaveChanges();
         } //d
         public ICollection<Course> GetCourses(int id)

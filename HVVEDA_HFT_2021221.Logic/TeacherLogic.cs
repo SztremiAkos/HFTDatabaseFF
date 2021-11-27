@@ -14,8 +14,10 @@ namespace HVVEDA_HFT_2021221.Logic
         ICollection<Course> GetCourses(int id);
         void AddNewTeacher(Teacher teacher);
 
+        IList<Teacher> GetAllTeachers();
         void UpdateTeacher(Teacher teacher);
         void DeleteTeacher(int id);
+        Teacher GetOneTeacher(int id);
 
 
     }
@@ -56,6 +58,11 @@ namespace HVVEDA_HFT_2021221.Logic
 
         }
 
+        public IList<Teacher> GetAllTeachers()
+        {
+            return teacherRepo.ReadAll().ToList();
+        }
+
         public ICollection<Course> GetCourses(int id)
         {
             if (id < teacherRepo.ReadAll().Count())
@@ -63,6 +70,11 @@ namespace HVVEDA_HFT_2021221.Logic
             else
                 throw new IndexOutOfRangeException("~~~Index is too big!~~~");
 
+        }
+
+        public Teacher GetOneTeacher(int id)
+        {
+            return teacherRepo.GetOne(id);
         }
 
         public void UpdateTeacher(Teacher teacher)

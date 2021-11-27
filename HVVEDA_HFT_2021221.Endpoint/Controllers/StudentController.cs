@@ -32,7 +32,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
             return sl.GetStudentbyId(id);
         }
 
-        // POST api/<StudentController>
+        // POST /Student
         [HttpPost]
         public void Post([FromBody] Student student)
         {
@@ -46,7 +46,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
             sl.UpdateStudent(student);
         }
 
-        // DELETE /car/5
+        // DELETE /student/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

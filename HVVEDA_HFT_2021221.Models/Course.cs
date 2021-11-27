@@ -37,10 +37,10 @@ namespace HVVEDA_HFT_2021221.Models
 
         [NotMapped]
         [JsonIgnore]
-        public virtual Teacher Teacher { get; set; }
+        public virtual Teacher? Teacher { get; set; }
 
         [ForeignKey(nameof(Teacher))]
-        public int TeacherId { get; set; }
+        public int? TeacherId { get; set; }
 
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
