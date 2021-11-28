@@ -33,5 +33,10 @@ namespace HVVEDA_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Course> Courses { get; set; }
+
+        public override string ToString()
+        {
+            return "\t>>ID: " + TeacherId + "\n\t>>Name: "+Firstname + " " + LastName + "\n\t>>Salary: " + Salary + "\n\t>>Age: " + Age;
+        }
     }
 }
