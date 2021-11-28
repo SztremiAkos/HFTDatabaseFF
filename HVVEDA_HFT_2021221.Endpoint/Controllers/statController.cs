@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HVVEDA_HFT_2021221.Endpoint.Controllers
 {
@@ -22,7 +21,6 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
             this.sl = sl;
             this.cl = cl;
         }
-
         [HttpGet]
         public IEnumerable<KeyValuePair<string, int>> StudentCountPerCategory()  //DONE
         {
@@ -34,15 +32,15 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
             return cl.CleanerNumberPerClassroom();
         }
         [HttpGet]
-        public IEnumerable<KeyValuePair<string, int>> CourseCleaningPrice() //course //TODO
+        public IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice() //course ????
         {
             return cl.CourseCleaningPrice();
         }
         [HttpGet]
-        public IEnumerable<KeyValuePair<Teacher, double?>> TeacherSalaryPerCourse() //course //TODO
+        public IEnumerable<KeyValuePair<string, double?>> TeacherSalaryPerCourse() //course ???
         {
-            return cl.TeacherSalaryPerCourse();
-        }
+            return cl.TheMostExpensiveCourseAndTheCost();
+        } 
 
 
         [HttpGet]

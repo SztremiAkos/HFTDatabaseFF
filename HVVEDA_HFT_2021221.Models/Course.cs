@@ -24,13 +24,16 @@ namespace HVVEDA_HFT_2021221.Models
 
 
         [ForeignKey(nameof(Cleaner))]
+        [JsonIgnore]
         public int? CleanerId { get; set; }
 
 
         [NotMapped]
+        [JsonIgnore]  // /Newtonsoft.Json.JsonSerializationException
         public virtual Student? Student { get; set; }
 
         [ForeignKey(nameof(Student))]
+        [JsonIgnore]
         public int? StudentId { get; set; }
 
 
@@ -40,6 +43,7 @@ namespace HVVEDA_HFT_2021221.Models
         public virtual Teacher? Teacher { get; set; }
 
         [ForeignKey(nameof(Teacher))]
+        [JsonIgnore]
         public int? TeacherId { get; set; }
 
 
@@ -60,6 +64,7 @@ namespace HVVEDA_HFT_2021221.Models
         public string Type { get; set; }
 
         [Required]
+        [JsonIgnore]
         public TimeSpan Length { get; set; } 
 
         [MaxLength(1)]

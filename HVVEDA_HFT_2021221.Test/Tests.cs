@@ -102,7 +102,7 @@ namespace HVVEDA_HFT_2021221.Test
         [TestCase(4, 200)]
         public void TeacherSalaryPerCourse_ReturnsTheCorrectAmountInOrder(int idx, double? value)
         {
-            var salary = courseLogic.TeacherSalaryPerCourse().OrderByDescending(x => x.Value).ToArray();
+            var salary = courseLogic.TheMostExpensiveCourseAndTheCost().OrderByDescending(x => x.Value).ToArray();
             ;
             Assert.That(salary[idx].Value, Is.EqualTo(value));
         }

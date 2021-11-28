@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Models
@@ -30,6 +31,7 @@ namespace HVVEDA_HFT_2021221.Models
         public int? Salary { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Course> Courses { get; set; }
     }
 }

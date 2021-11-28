@@ -29,5 +29,10 @@ namespace HVVEDA_HFT_2021221.Models
 
         public int CourseCount { get { return Courses.Count; } }
 
+        public override string ToString()
+        {
+            return ">>Name<<\t" + Firstname + "\t" + LastName + " >>ID<<\t" + StudentID;
+        }
+
     }
 }

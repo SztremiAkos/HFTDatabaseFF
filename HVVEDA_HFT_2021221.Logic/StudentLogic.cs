@@ -78,8 +78,6 @@ namespace HVVEDA_HFT_2021221.Logic
         }
         public IEnumerable<KeyValuePair<string,int>> StudentCountPerCategory()
         {
-            var q = from x in courseRepo.ReadAll()
-                    select x;
             var StudPerClass = from x in courseRepo.ReadAll()
                                group x by x.Type into g
                                select new KeyValuePair<string, int>(g.Key, g.Count());
