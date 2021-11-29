@@ -43,7 +43,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT /Cleaner/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Cleaner value)
         {
             cl.UpdateCleaner(value);

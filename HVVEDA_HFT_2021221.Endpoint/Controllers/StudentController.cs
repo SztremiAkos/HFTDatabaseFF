@@ -40,7 +40,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT api/Student
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Student student)
         {
             sl.UpdateStudent(student);

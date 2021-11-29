@@ -31,7 +31,7 @@ namespace HVVEDA_HFT_2021221.Models
 
         public override string ToString()
         {
-            return "\t>>Name<<:" + Firstname + " " + LastName + "\t>>ID<<:" + StudentID+"\n";
+            return ">>Name<<:" + Firstname + " " + LastName + "\n\t>>ID<<:" + StudentID+"\n";
         }
 
     }

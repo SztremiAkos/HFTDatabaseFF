@@ -39,7 +39,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<KeyValuePair<string, double?>> TeacherSalaryPerCourse() //course ???
         {
-            return cl.TheMostExpensiveCourseAndTheCost();
+            return cl.TeacherSalaryPerCourse();
         } 
 
 

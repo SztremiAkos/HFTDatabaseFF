@@ -44,7 +44,8 @@ namespace HVVEDA_HFT_2021221.Repository
         public void UpdateStudent(Student student)
         {
             var toUpdate = GetOne(student.StudentID);
-            toUpdate.Courses = student.Courses;
+            toUpdate.Firstname = student.Firstname;
+            toUpdate.LastName = student.LastName;
             ctx.SaveChanges();
         }
     }

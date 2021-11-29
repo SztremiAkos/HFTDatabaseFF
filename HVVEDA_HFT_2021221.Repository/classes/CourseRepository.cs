@@ -52,9 +52,7 @@ namespace HVVEDA_HFT_2021221.Repository
             toUpdate.Credits = course.Credits;
             toUpdate.Length = course.Length;
             toUpdate.Location = course.Location;
-            toUpdate.Teacher = course.Teacher;
             toUpdate.Title = course.Title;
-            toUpdate.Cleaner = toUpdate.Cleaner;
             ctx.SaveChanges();
         }
     }

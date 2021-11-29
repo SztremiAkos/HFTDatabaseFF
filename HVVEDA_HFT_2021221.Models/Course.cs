@@ -58,16 +58,19 @@ namespace HVVEDA_HFT_2021221.Models
 
         [MaxLength(15)]
         [Required]
-        public string Location { get; set; } //
+        public string Location { get; set; } //.
 
         [Required]
         public string Type { get; set; }
 
         [Required]
-        [JsonIgnore]
-        public TimeSpan Length { get; set; } 
+        public string Length { get; set; }
 
-        [MaxLength(1)]
         public int? Credits { get; set; }
+
+        public override string ToString()
+        {
+            return ">>Title: " + Title + "\n\t>>Location: " + Location + "\n\t>>Type: " + Type + "\n\t>>Length: " + Length + "\n\t>>Credits: " + Credits;
+        }
     }
 }

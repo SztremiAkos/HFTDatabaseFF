@@ -34,7 +34,7 @@ namespace HVVEDA_HFT_2021221.Test
                     Title = "Advanced development techniques",
                     Credits = 7,
                     Location = "F03",
-                    Length = new TimeSpan(3, 30, 0),
+                    Length = "03:30",
                     Type = "Programming"
                 });
             mockTeacherRepo.Setup(x => x.ReadAll()).Returns(this.FakeTeacherRepo);
@@ -102,7 +102,7 @@ namespace HVVEDA_HFT_2021221.Test
         [TestCase(4, 200)]
         public void TeacherSalaryPerCourse_ReturnsTheCorrectAmountInOrder(int idx, double? value)
         {
-            var salary = courseLogic.TheMostExpensiveCourseAndTheCost().OrderByDescending(x => x.Value).ToArray();
+            var salary = courseLogic.TeacherSalaryPerCourse().OrderByDescending(x => x.Value).ToArray();
             ;
             Assert.That(salary[idx].Value, Is.EqualTo(value));
         }
@@ -115,7 +115,6 @@ namespace HVVEDA_HFT_2021221.Test
         public void CourseCleaningPrice(int idx, int? price)
         {
             var cleaningPrices = courseLogic.CourseCleaningPrice().OrderByDescending(x => x.Value).ToArray();
-            ;
             Assert.That(cleaningPrices[idx].Value, Is.EqualTo(price));
         }
 
@@ -158,11 +157,11 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "natural science " };
-            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = new TimeSpan(0, 45, 0), Type = "natural science" };
-            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "McDonald's" };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
+            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
+            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
+            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };
             //--------------------------------------------
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
@@ -249,11 +248,11 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "natural science " };
-            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = new TimeSpan(0, 45, 0), Type = "natural science" };
-            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "McDonald's" };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
+            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
+            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
+            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };
             //--------------------------------------------
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
@@ -337,11 +336,11 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "natural science " };
-            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = new TimeSpan(0, 45, 0), Type = "natural science" };
-            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "McDonald's" };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
+            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
+            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
+            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };     
             //--------------------------------------------
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
@@ -427,12 +426,11 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "natural science " };
-            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = new TimeSpan(3, 30, 0), Type = "Programming" };
-            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = new TimeSpan(0, 45, 0), Type = "natural science" };
-            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = new TimeSpan(2, 0, 0), Type = "McDonald's" };
-            //--------------------------------------------
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
+            Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
+            Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
+            Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };            //--------------------------------------------
 
             Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
             Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };

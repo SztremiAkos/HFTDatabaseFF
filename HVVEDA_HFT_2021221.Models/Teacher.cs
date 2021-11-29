@@ -36,7 +36,7 @@ namespace HVVEDA_HFT_2021221.Models
 
         public override string ToString()
         {
-            return "\t>>ID: " + TeacherId + "\n\t>>Name: "+Firstname + " " + LastName + "\n\t>>Salary: " + Salary + "\n\t>>Age: " + Age;
+            return "\n>>Name: " + Firstname + " " + LastName + "\n\t>>ID: " + TeacherId + "\n\t>>Salary: " + Salary + "\n\t>>Age: " + Age;
         }
     }
 }

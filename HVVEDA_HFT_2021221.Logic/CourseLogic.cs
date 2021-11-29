@@ -27,7 +27,7 @@ namespace HVVEDA_HFT_2021221.Logic
         IEnumerable<Teacher> GetTheDirtiestCoursesTeacher();
 
         IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice();
-        IEnumerable<KeyValuePair<string, double?>> TheMostExpensiveCourseAndTheCost();//TeacherSalaryPerCourse();
+        IEnumerable<KeyValuePair<string, double?>> TeacherSalaryPerCourse();//TeacherSalaryPerCourse();
 
 
 
@@ -108,10 +108,9 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public IEnumerable<KeyValuePair<string, int?>> CleanerNumberPerClassroom()
         {
-            var cleanergrp_sub = from x in cleanerRepo.ReadAll()
-                                 group x by x.Location.Location into g
-                                 select new KeyValuePair<string, int?>(g.Key, g.Count());
-            return cleanergrp_sub;
+            return from x in cleanerRepo.ReadAll()
+                   group x by x.Location.Location into g
+                   select new KeyValuePair<string, int?>(g.Key, g.Count());
         }
 
         public void UpdateCourse(Course course)
@@ -132,12 +131,11 @@ namespace HVVEDA_HFT_2021221.Logic
         //TODO 4kesz
         public IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice()
         {
-            var q = from x in courseRepo.ReadAll()
-                    select new KeyValuePair<string, int?>(x.Title, x.Cleaner.Salary);
 
-            return q;
+            return from x in courseRepo.ReadAll()
+                   select new KeyValuePair<string, int?>(x.Title, x.Cleaner.Salary);
         }
-        public IEnumerable<KeyValuePair<string, double?>> TheMostExpensiveCourseAndTheCost() //TeacherSalaryPerCourse()
+        public IEnumerable<KeyValuePair<string, double?>> TeacherSalaryPerCourse()
         {
             //var asd2 = courseRepo.ReadAll().AsEnumerable().GroupBy(x => x.Teacher).Select(g => new KeyValuePair<Teacher, double?>(g.Key, g.Average(x => x.Teacher.Salary))).OrderBy(x => x.Value).ToList();
 
@@ -165,9 +163,8 @@ namespace HVVEDA_HFT_2021221.Logic
             //           group JoinedItems by JoinedItems.Title into grp
             //           select new KeyValuePair<string, double?>(grp.Key, grp.Average(x => x.Salary));
 
-            var asd = from x in courseRepo.ReadAll()
-                      select new KeyValuePair<string, double?>(x.Title, x.Teacher.Salary);
-            return asd;
+            return from x in courseRepo.ReadAll()
+                   select new KeyValuePair<string, double?>(x.Title, x.Teacher.Salary);
         }
 
         public Course GetOne(int id)

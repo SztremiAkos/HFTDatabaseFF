@@ -46,9 +46,9 @@ namespace HVVEDA_HFT_2021221.Repository
         public void UpdateCleaner(Cleaner cleaner)
         {
             var toUpdate = GetOne(cleaner.CleanerId);
-            toUpdate.Location = cleaner.Location;
             toUpdate.Position = cleaner.Position;
             toUpdate.Salary = cleaner.Salary;
+            ;
             ctx.SaveChanges();
         }
         public void SetNewSalary(int id, int newAmount)

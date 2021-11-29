@@ -51,6 +51,9 @@ namespace HVVEDA_HFT_2021221.Repository
         public void UpdateTeacher(Teacher teacher)
         {
             var toUpdate = GetOne(teacher.TeacherId);
+            toUpdate.Firstname = teacher.Firstname;
+            toUpdate.LastName = teacher.LastName;
+            toUpdate.Age = teacher.Age;
             toUpdate.Salary = teacher.Salary;
             toUpdate.Courses = teacher.Courses;
             ctx.SaveChanges();

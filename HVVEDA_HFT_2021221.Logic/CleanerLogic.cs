@@ -66,7 +66,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public void DeleteCleaner(int id)
         {
-            if (id < cleanerRepo.ReadAll().Count())
+            if (id <= cleanerRepo.ReadAll().Count())
                 cleanerRepo.DeleteOne(id);
             else
                 throw new IndexOutOfRangeException("~~~~Index Is too Big!~~~~");

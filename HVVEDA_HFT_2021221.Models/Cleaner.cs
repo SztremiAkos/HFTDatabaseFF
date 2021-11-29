@@ -19,10 +19,14 @@ namespace HVVEDA_HFT_2021221.Models
         [Required]
         public string Name { get; set; }
         public int Salary { get; set; }
-        public string Position { get; set; }
+        public string? Position { get; set; }
 
         [JsonIgnore]
-        public virtual Course Location { get; set; }
+        public virtual Course? Location { get; set; }
+        public override string ToString()
+        {
+            return ">>Name: " + Name + "\n\t>>Salary: " + Salary + "\n\t>>Position: " + Position;
+        }
 
     }
 }
