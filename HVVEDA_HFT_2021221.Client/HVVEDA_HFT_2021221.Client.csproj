@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HVVEDA_HFT_2021221.Data\HVVEDA_HFT_2021221.Data.csproj" />
     <ProjectReference Include="..\HVVEDA_HFT_2021221.Models\HVVEDA_HFT_2021221.Models.csproj" />
   </ItemGroup>
 

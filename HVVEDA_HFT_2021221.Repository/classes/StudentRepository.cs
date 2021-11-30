@@ -22,13 +22,17 @@ namespace HVVEDA_HFT_2021221.Repository
         {
             var stud = GetOne(id);
             var courses = stud.Courses;
-            foreach (var item in courses)
+            if (courses !=null)
             {
-                if (item.StudentId == stud.StudentID)
+                foreach (var item in courses)
                 {
-                    item.Student = null;
+                    if (item.StudentId == stud.StudentID)
+                    {
+                        item.Student = null;
+                    }
                 }
             }
+            
             ctx.Remove(GetOne(id));
             ctx.SaveChanges();
         } //d

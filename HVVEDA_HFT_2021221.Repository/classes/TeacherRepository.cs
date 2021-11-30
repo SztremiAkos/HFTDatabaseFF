@@ -29,14 +29,16 @@ namespace HVVEDA_HFT_2021221.Repository
             ctx.Remove(GetOne(id));
             var teach = GetOne(id);
             var courses = teach.Courses;
-            foreach (var item in courses)
+            if (courses != null)
             {
-                if (item.TeacherId == teach.TeacherId)
+                foreach (var item in courses)
                 {
-                    item.Teacher = null;
+                    if (item.TeacherId == teach.TeacherId)
+                    {
+                        item.Teacher = null;
+                    }
                 }
             }
-
             ctx.SaveChanges();
         } //d
         public ICollection<Course> GetCourses(int id)
@@ -45,7 +47,7 @@ namespace HVVEDA_HFT_2021221.Repository
         } //r
         public override Teacher GetOne(int id)
         {
-            return ReadAll().SingleOrDefault(x => x.TeacherId==id);
+            return ReadAll().SingleOrDefault(x => x.TeacherId == id);
         } //r
 
         public void UpdateTeacher(Teacher teacher)

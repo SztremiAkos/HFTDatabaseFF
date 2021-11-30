@@ -70,7 +70,7 @@ namespace HVVEDA_HFT_2021221.Models
 
         public override string ToString()
         {
-            return ">>Title: " + Title + "\n\t>>Location: " + Location + "\n\t>>Type: " + Type + "\n\t>>Length: " + Length + "\n\t>>Credits: " + Credits;
+            return ">>Title: " + Title + "\n\t>>CourseID: "+CourseID+"\n\t>>Location: " + Location + "\n\t>>Type: " + Type + "\n\t>>Length: " + Length + "\n\t>>Credits: " + Credits;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace HVVEDA_HFT_2021221.Models
         public virtual Course? Location { get; set; }
         public override string ToString()
         {
-            return ">>Name: " + Name + "\n\t>>Salary: " + Salary + "\n\t>>Position: " + Position;
+            return ">>ID: " + CleanerId + "\n\t>>Name: " + Name + "\n\t>>Salary: " + Salary + "\n\t>>Position: " + Position;
         }
 
     }

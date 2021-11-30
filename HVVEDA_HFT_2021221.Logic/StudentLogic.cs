@@ -45,7 +45,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public void DelStudentbyId(int id)
         {
-            if (id <= studentRepo.ReadAll().Count())
+            if (id <= studentRepo.ReadAll().Max(t => t.StudentID))
                 studentRepo.DeleteOne(id);
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");
@@ -53,7 +53,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public ICollection<Course> GetAllCourses(int id)
         {
-            if (id <= studentRepo.ReadAll().Count())
+            if (id <= studentRepo.ReadAll().Max(t => t.StudentID))
                 return studentRepo.GetAllCourses(id);
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");
@@ -66,7 +66,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public Student GetStudentbyId(int id)
         {
-            if (id <= studentRepo.ReadAll().Count())
+            if (id <= studentRepo.ReadAll().Max(t => t.StudentID))
                 return studentRepo.GetOne(id);
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");

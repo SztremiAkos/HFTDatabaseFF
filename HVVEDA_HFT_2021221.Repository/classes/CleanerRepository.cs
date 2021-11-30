@@ -23,7 +23,10 @@ namespace HVVEDA_HFT_2021221.Repository
         {
             var cleaner = GetOne(id);
             var course = cleaner.Location;
-            course.Cleaner = null;
+            if (course != null)
+            {
+                course.Cleaner = null;
+            }
             ctx.Remove(GetOne(id));
             ctx.SaveChanges();
         } //d

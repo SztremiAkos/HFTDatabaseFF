@@ -120,7 +120,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public void DeleteCourse(int id)
         {
-            if (id < courseRepo.ReadAll().Count())
+            if (id <= courseRepo.ReadAll().Max(t => t.CourseID))
                 courseRepo.DeleteOne(id);
             else
                 throw new IndexOutOfRangeException("~~~Index is too big!~~~");

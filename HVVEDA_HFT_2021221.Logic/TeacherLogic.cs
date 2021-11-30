@@ -42,7 +42,7 @@ namespace HVVEDA_HFT_2021221.Logic
         public void ChangeSalary(int id, int newsalary)
 
         {
-            if (id < teacherRepo.ReadAll().Count())
+            if (id < teacherRepo.ReadAll().Max(t => t.TeacherId))
                 teacherRepo.ChangeSalary(id, newsalary);
             else
                 throw new IndexOutOfRangeException("~~~Index is too big!~~~");
@@ -51,7 +51,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public void DeleteTeacher(int id)
         {
-            if (id <= teacherRepo.ReadAll().Count())
+            if (id <= teacherRepo.ReadAll().Max(t => t.TeacherId))
                 teacherRepo.DeleteOne(id);
             else
                 throw new IndexOutOfRangeException("~~~Index is too big!~~~");
@@ -65,7 +65,7 @@ namespace HVVEDA_HFT_2021221.Logic
 
         public ICollection<Course> GetCourses(int id)
         {
-            if (id < teacherRepo.ReadAll().Count())
+            if (id < teacherRepo.ReadAll().Max(t=>t.TeacherId))
                 return teacherRepo.GetCourses(id);
             else
                 throw new IndexOutOfRangeException("~~~Index is too big!~~~");

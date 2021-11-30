@@ -1,5 +1,4 @@
 ﻿using ConsoleTools;
-using HVVEDA_HFT_2021221.Data;
 using HVVEDA_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
@@ -296,6 +295,7 @@ namespace HVVEDA_HFT_2021221.Client
         static void UpdateCleaner()
         {
             MenuLayout("UpdateCleaner");
+            Console.Write("Enter a valid cleaner id: ");
             int id = int.Parse(Console.ReadLine());
             var cleaner = rest.Get<Cleaner>("cleaner");
             var newcleaner = new Cleaner();
@@ -350,7 +350,6 @@ namespace HVVEDA_HFT_2021221.Client
                 throw new IndexOutOfRangeException($"There is no {id} in the Courses database!");
             }
         }
-
         static void MenuLayout(string menutype)
         {
             Console.Clear();

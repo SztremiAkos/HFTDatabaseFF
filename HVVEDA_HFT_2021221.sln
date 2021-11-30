@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVVEDA_HFT_2021221.Client", "HVVEDA_HFT_2021221.Client\HVVEDA_HFT_2021221.Client.csproj", "{2CDB7C09-DC7B-4D8C-8D85-5EF84B5E80F4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{30222B99-3F3B-42A4-AEFE-058223286C9E} = {30222B99-3F3B-42A4-AEFE-058223286C9E}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HVVEDA_HFT_2021221.Models", "HVVEDA_HFT_2021221.Models\HVVEDA_HFT_2021221.Models.csproj", "{85FAD777-EA2F-4A54-89EE-608CBE7823A5}"
 EndProject
