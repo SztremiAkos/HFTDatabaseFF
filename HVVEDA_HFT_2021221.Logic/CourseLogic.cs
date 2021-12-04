@@ -50,17 +50,15 @@ namespace HVVEDA_HFT_2021221.Logic
             this.cleanerRepo = cleanerRepo;
             this.studentRepo = studentRepo;
         }
-
+        //TODO GetTheDirtiestCoursesTeacher
         public IEnumerable<Teacher> GetTheDirtiestCoursesTeacher()
         {
             var dirtyC_sub = from x in courseRepo.ReadAll()
                              where x.Cleaner.Position == "Fired"
                              select x;
-            ;
-
 
             var dirtyC_SingleSub = dirtyC_sub.FirstOrDefault();
-            ;
+
             var dirtyClass = from x in teacherRepo.ReadAll()
                              where dirtyC_SingleSub.TeacherId.Equals(x.TeacherId)
                              select x;
@@ -105,12 +103,27 @@ namespace HVVEDA_HFT_2021221.Logic
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");
         }
-
+        //TODO CleanerNumberPerClassroom
         public IEnumerable<KeyValuePair<string, int?>> CleanerNumberPerClassroom()
         {
-            return from x in cleanerRepo.ReadAll()
-                   group x by x.Location.Location into g
-                   select new KeyValuePair<string, int?>(g.Key, g.Count());
+            //var courses = from x in courseRepo.ReadAll()
+            //              select new
+            //              {
+            //                  CLEANERID = x.CleanerId,
+            //                  LOCATION = x.Location
+            //              };
+            var courses = from x in cleanerRepo.ReadAll()
+                          select new
+                          {
+                              CLEANERID = x.Location.CleanerId,
+                              LOCATION = x.Location.Location
+                          };
+            var asd = from x in cleanerRepo.ReadAll()
+                      join c in courses on x.CleanerId equals c.CLEANERID
+                      let joinedItems = new { x.Location, c.LOCATION, x.Salary }
+                      group joinedItems by joinedItems.Location.Location into g
+                      select new KeyValuePair<string, int?>(g.Key, g.Count());
+            return asd;
         }
 
         public void UpdateCourse(Course course)
@@ -128,43 +141,27 @@ namespace HVVEDA_HFT_2021221.Logic
         }
 
 
-        //TODO 4kesz
+        //TODO COURSECLEANINGPRICE
         public IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice()
         {
-
+            var cleanerswithcourse = from x in courseRepo.ReadAll() //cleaner
+                                     where x.Cleaner.Location != null && x.Cleaner.Salary != 0
+                                     select x;
             return from x in courseRepo.ReadAll()
-                   select new KeyValuePair<string, int?>(x.Title, x.Cleaner.Salary);
+                   join c in cleanerswithcourse on x.CleanerId equals c.CleanerId
+                   select new KeyValuePair<string, int?>(x.Title, c.Cleaner.Salary);
         }
+
+        //TODO TeacherSalaryPerCourse
         public IEnumerable<KeyValuePair<string, double?>> TeacherSalaryPerCourse()
         {
-            //var asd2 = courseRepo.ReadAll().AsEnumerable().GroupBy(x => x.Teacher).Select(g => new KeyValuePair<Teacher, double?>(g.Key, g.Average(x => x.Teacher.Salary))).OrderBy(x => x.Value).ToList();
-
-            //var asd3 = from x in courseRepo.ReadAll()
-            //           join s in teacherRepo.ReadAll() on x.TeacherId equals s.TeacherId
-            //           let JoinedItems = new { x.Title, s.Salary }
-            //           group JoinedItems by JoinedItems.Title into grp
-            //           orderby grp.Average(x => x.Salary)
-            //           select new KeyValuePair<string, double?>(grp.Key, grp.Average(x => x.Salary));
-            ;
-            //var courses = from x in courseRepo.ReadAll()
-            //              group x by x.Type into g
-            //              select g;
-
-            //var teachers = from x in teacherRepo.ReadAll()
-            //               select x;
-
-
-
-            //var asd5 = courseRepo.ReadAll().Include("Teacher").AsEnumerable().GroupBy(x => x.Teacher).Select(x => new KeyValuePair<string, double?>(x.Key.LastName, x.Average(t => t.Teacher.Salary)));
-
-            //var asd4 = from x in courses
-            //           join t in teachers on x.TeacherId equals t.TeacherId
-            //           let JoinedItems = new { x.Title, t.Salary }
-            //           group JoinedItems by JoinedItems.Title into grp
-            //           select new KeyValuePair<string, double?>(grp.Key, grp.Average(x => x.Salary));
-
-            return from x in courseRepo.ReadAll()
-                   select new KeyValuePair<string, double?>(x.Title, x.Teacher.Salary);
+            var teacherswithcourse = from x in courseRepo.ReadAll()
+                                     where x.Teacher.Courses.Count != 0
+                                     select x;
+            var q= from x in courseRepo.ReadAll()
+                   join t in teacherswithcourse on x.TeacherId equals t.TeacherId
+                   select new KeyValuePair<string, double?>(x.Title, t.Teacher.Salary);
+            return q.ToList();
         }
 
         public Course GetOne(int id)

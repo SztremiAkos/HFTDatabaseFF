@@ -11,7 +11,7 @@ namespace HVVEDA_HFT_2021221.Repository
 {
     public class StudentRepository : Repository<Student>, IStudentRepository
     {
-        public StudentRepository(DbContext ctx): base(ctx) { }
+        public StudentRepository(DbContext ctx): base(ctx) { } //CourseContext
 
         public void AddNewStudent(Student student)
         {

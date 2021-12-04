@@ -10,7 +10,7 @@
   "profiles": {
     "IIS Express": {
         "commandName": "IISExpress",
-        "launchUrl": "stat/TeacherSalaryPerCourse",
+        "launchUrl": "stat/CleanerNumberPerClassroom",
         "launchBrowser": true,
         "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Development"
