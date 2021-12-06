@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace HVVEDA_HFT_2021221.Data
 {
-    public class CourseContext : DbContext
+    public class CourseDbContext : DbContext
     {
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Cleaner> Cleaners { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<Student> Students { get; set; }
-        public CourseContext(DbContextOptions<CourseContext> options) : base(options) { }
+        public CourseDbContext(DbContextOptions<CourseDbContext> options) : base(options) { }
 
-        public CourseContext()
+        public CourseDbContext()
         {
             this.Database.EnsureCreated();
         }

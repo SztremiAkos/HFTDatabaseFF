@@ -11,7 +11,7 @@ namespace HVVEDA_HFT_2021221.Repository
 {
     public class CleanerRepository : Repository<Cleaner>, ICleanerRepository
     {
-        public CleanerRepository(DbContext ctx) : base(ctx) { }
+        public CleanerRepository(CourseDbContext ctx) : base(ctx) { }
 
 
         public void AddNewCleaner(Cleaner cleaner)

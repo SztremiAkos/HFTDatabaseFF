@@ -11,7 +11,7 @@ namespace HVVEDA_HFT_2021221.Repository
 {
     public class TeacherRepository : Repository<Teacher>, ITeacherRepository
     {
-        public TeacherRepository(DbContext ctx) : base(ctx) { }
+        public TeacherRepository(CourseDbContext ctx) : base(ctx) { }
 
         public void AddNewTeacher(Teacher teacher)
         {

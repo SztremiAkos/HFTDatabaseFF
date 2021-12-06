@@ -76,16 +76,18 @@ namespace HVVEDA_HFT_2021221.Logic
         {
             studentRepo.UpdateStudent(student);
         }
-        //TODO MEGCSINALNI
-        public IEnumerable<KeyValuePair<string,int>> StudentCountPerCategory()
+        //TODO StudentCountPerCategory //TOBB
+        public IEnumerable<KeyValuePair<string, int>> StudentCountPerCategory()
         {
-            
-            var StudPerClass = from x in courseRepo.ReadAll()
-                               group x by x.Type into g
-                               select new KeyValuePair<string, int>(g.Key, g.Count());
-            ;
 
-            return StudPerClass;
+            var students = from x in studentRepo.ReadAll()
+                           where x.Courses.Count != 0
+                           select x;
+            return from x in courseRepo.ReadAll()
+                   join s in students on x.StudentId equals s.StudentID
+                   let joinedItems = new { x.StudentId, x.Type, s.StudentID }
+                   group joinedItems by joinedItems.Type into g
+                   select new KeyValuePair<string, int>(g.Key, g.Count());
         }
     }
 }

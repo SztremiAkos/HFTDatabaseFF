@@ -11,7 +11,7 @@ namespace HVVEDA_HFT_2021221.Repository
 {
     public class CourseRepository :Repository<Course>,ICourseRepository
     {
-        public CourseRepository(DbContext ctx) : base(ctx) { }
+        public CourseRepository(CourseDbContext ctx) : base(ctx) { }
 
         public void AddNewCourse(Course course)
         {
