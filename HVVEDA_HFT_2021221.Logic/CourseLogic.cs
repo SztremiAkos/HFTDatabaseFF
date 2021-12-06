@@ -106,17 +106,14 @@ namespace HVVEDA_HFT_2021221.Logic
         //TODO CleanerNumberPerClassroom //TOBB
         public IEnumerable<KeyValuePair<string, int?>> CleanerNumberPerClassroom()
         {
-            var courses = from x in cleanerRepo.ReadAll()
-                          select new
-                          {
-                              CLEANERID = x.Location.CleanerId,
-                              LOCATION = x.Location.Location
-                          };
+            var courses = from x in courseRepo.ReadAll()
+                          where x.CleanerId != null
+                          select x;
             return from x in cleanerRepo.ReadAll()
-                      join c in courses on x.CleanerId equals c.CLEANERID
-                      let joinedItems = new { x.Location, c.LOCATION, x.Salary }
-                      group joinedItems by joinedItems.Location.Location into g
-                      select new KeyValuePair<string, int?>(g.Key, g.Count());
+                   join c in courses on x.CleanerId equals c.CleanerId
+                   let joinedItems = new { x.CleanerId, c.Location, x.Salary }
+                   group joinedItems by joinedItems.Location into g
+                   select new KeyValuePair<string, int?>(g.Key, g.Count());
         }
 
         public void UpdateCourse(Course course)
@@ -151,9 +148,9 @@ namespace HVVEDA_HFT_2021221.Logic
             var teacherswithcourse = from x in teacherRepo.ReadAll()
                                      where x.Courses.Count != 0
                                      select x;
-            var q= from x in courseRepo.ReadAll()
-                   join t in teacherswithcourse on x.TeacherId equals t.TeacherId
-                   select new KeyValuePair<string, double?>(x.Title, t.Salary);
+            var q = from x in courseRepo.ReadAll()
+                    join t in teacherswithcourse on x.TeacherId equals t.TeacherId
+                    select new KeyValuePair<string, double?>(x.Title, t.Salary);
             return q;
         }
 
