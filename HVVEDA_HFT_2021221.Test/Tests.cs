@@ -87,9 +87,8 @@ namespace HVVEDA_HFT_2021221.Test
         }
 
         [TestCase(0, 2)]
-        [TestCase(1, 1)]
+        [TestCase(1, 2)]
         [TestCase(2, 1)]
-        [TestCase(3, 1)]
         public void StudentCountPerClassRoom_GivesTheRightAmount(int idx, int amount)
         {
             Assert.That(studentLogic.StudentCountPerCategory().OrderByDescending(x => x.Value).ToArray()[idx].Value, Is.EqualTo(amount));
@@ -111,7 +110,6 @@ namespace HVVEDA_HFT_2021221.Test
         [TestCase(1, 300)]
         [TestCase(2, 200)]
         [TestCase(3, 100)]
-        [TestCase(4, 0)]
         public void CourseCleaningPrice(int idx, int? price)
         {
             var cleaningPrices = courseLogic.CourseCleaningPrice().OrderByDescending(x => x.Value).ToArray();
@@ -157,7 +155,7 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science" };
             Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
             Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
             Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
@@ -248,7 +246,7 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science" };
             Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
             Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
             Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
@@ -336,7 +334,7 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science" };
             Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
             Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
             Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
@@ -426,7 +424,7 @@ namespace HVVEDA_HFT_2021221.Test
             Teacher teacher4 = new() { TeacherId = 4, Firstname = "Jakus", LastName = "Roland", Salary = 200, Age = 33 };
             Teacher teacher5 = new() { TeacherId = 5, Firstname = "Labnelkuli", LastName = "Botond", Salary = 15000, Age = 75 };
             //--------------------------------------------
-            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science " };
+            Course course1 = new() { CourseID = 1, Title = "Calculus", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science" };
             Course course2 = new() { CourseID = 2, Title = "Python Programming", Credits = 3, Location = "F02", Length = "03:00", Type = "Programming" };
             Course course3 = new() { CourseID = 3, Title = "Advanced development techniques", Credits = 7, Location = "F03", Length = "03:30", Type = "Programming" };
             Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
