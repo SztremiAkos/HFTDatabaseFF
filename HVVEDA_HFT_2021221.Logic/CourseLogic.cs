@@ -50,7 +50,7 @@ namespace HVVEDA_HFT_2021221.Logic
             this.cleanerRepo = cleanerRepo;
             this.studentRepo = studentRepo;
         }
-        //TODO GetTheDirtiestCoursesTeacher //TOBB
+        //TODO GetTheDirtiestCoursesTeacher //TOBB //done
         public IEnumerable<Teacher> GetTheDirtiestCoursesTeacher()
         {
             var dirtyC_sub = from x in courseRepo.ReadAll()
@@ -103,13 +103,23 @@ namespace HVVEDA_HFT_2021221.Logic
             else
                 throw new IndexOutOfRangeException("~~~~Index is too big!~~~~");
         }
-        //TODO CleanerNumberPerClassroom //TOBB
+        //TODO CleanerNumberPerClassroom //TOBB //done
         public IEnumerable<KeyValuePair<string, int?>> CleanerNumberPerClassroom()
         {
-            var courses = from x in courseRepo.ReadAll()
-                          where x.CleanerId != null
-                          select x;
-            return from x in cleanerRepo.ReadAll()
+            List<Course> courses = new List<Course>();
+            List<Cleaner> cleaners = new List<Cleaner>();
+            foreach (var item in courseRepo.ReadAll())
+            {
+                if (item.CleanerId!=null)
+                {
+                    courses.Add(item);
+                }
+            }
+            foreach (var item in cleanerRepo.ReadAll())
+            {
+                cleaners.Add(item);
+            }
+            return from x in cleaners
                    join c in courses on x.CleanerId equals c.CleanerId
                    let joinedItems = new { x.CleanerId, c.Location, x.Salary }
                    group joinedItems by joinedItems.Location into g
@@ -131,24 +141,46 @@ namespace HVVEDA_HFT_2021221.Logic
         }
 
 
-        //TODO COURSECLEANINGPRICE //TOBB
+        //TODO COURSECLEANINGPRICE //TOBB //helyes
         public IEnumerable<KeyValuePair<string, int?>> CourseCleaningPrice()
         {
+            List<Cleaner> cleaners = new List<Cleaner>();
+            List<Course> courses = new List<Course>();
             var cleanerswithcourse = from x in cleanerRepo.ReadAll() //cleaner
                                      where x.Location != null && x.Salary != 0
                                      select x;
-            return from x in courseRepo.ReadAll()
-                   join c in cleanerswithcourse on x.CleanerId equals c.CleanerId
+            foreach (var item in cleanerswithcourse)
+            {
+                cleaners.Add(item);
+            }
+            foreach (var item in courseRepo.ReadAll())
+            {
+                courses.Add(item);
+            }
+            return from x in courses
+                   join c in cleaners on x.CleanerId equals c.CleanerId
                    select new KeyValuePair<string, int?>(x.Title, c.Salary);
         }
 
-        //TODO TeacherSalaryPerCourse //TOBB
+        //TODO TeacherSalaryPerCourse //TOBB //helyes
         public IEnumerable<KeyValuePair<string, double?>> TeacherSalaryPerCourse()
         {
+            List<Course> courses = new List<Course>();
+            List<Teacher> teachers = new List<Teacher>();
+            foreach (var item in courseRepo.ReadAll())
+            {
+                courses.Add(item);
+            }
+
+
             var teacherswithcourse = from x in teacherRepo.ReadAll()
                                      where x.Courses.Count != 0
                                      select x;
-            var q = from x in courseRepo.ReadAll()
+            foreach (var item in teacherswithcourse)
+            {
+                teachers.Add(item);
+            }
+            var q = from x in courses
                     join t in teacherswithcourse on x.TeacherId equals t.TeacherId
                     select new KeyValuePair<string, double?>(x.Title, t.Salary);
             return q;

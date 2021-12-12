@@ -76,15 +76,27 @@ namespace HVVEDA_HFT_2021221.Logic
         {
             studentRepo.UpdateStudent(student);
         }
-        //TODO StudentCountPerCategory //TOBB
+        //TODO StudentCountPerCategory //TOBB //helyes
         public IEnumerable<KeyValuePair<string, int>> StudentCountPerCategory()
         {
+            List<Student> students = new List<Student>();
+            List<Course> courses = new List<Course>();
+            foreach (var item in studentRepo.ReadAll())
+            {
+                students.Add(item);
+            }
+            foreach (var item in courseRepo.ReadAll())
+            {
+                courses.Add(item);
+            }
+            ;
 
-            var students = from x in studentRepo.ReadAll()
-                           where x.Courses.Count != 0
-                           select x;
-            return from x in courseRepo.ReadAll()
-                   join s in students on x.StudentId equals s.StudentID
+            var studentss = from x in students
+                            where x.Courses.Count != 0
+                            select x;
+
+            return from x in courses
+                   join s in studentss on x.StudentId equals s.StudentID
                    let joinedItems = new { x.StudentId, x.Type, s.StudentID }
                    group joinedItems by joinedItems.Type into g
                    select new KeyValuePair<string, int>(g.Key, g.Count());
