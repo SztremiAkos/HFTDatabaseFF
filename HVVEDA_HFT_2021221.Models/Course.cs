@@ -11,6 +11,7 @@ namespace HVVEDA_HFT_2021221.Models
 {
 
     [Table("Courses")]
+    [ToDetect]
     public class Course
     {
 

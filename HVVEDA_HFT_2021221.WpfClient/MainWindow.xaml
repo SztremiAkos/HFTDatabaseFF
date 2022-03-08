@@ -1,0 +1,58 @@
+﻿<Window x:Class="HVVEDA_HFT_2021221.WpfClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HVVEDA_HFT_2021221.WpfClient"
+        mc:Ignorable="d"
+        Title="Class Selector" SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid Background="#2c313c">
+
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Background="#568af2" Foreground="#f5f6f9" Grid.Column="0" Grid.Row="0" Content="Teachers" FontFamily="Arial Black" FontSize="20" Padding="0" Margin="30" Command="{Binding TeacherOpenCommand}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Background="#568af2" Foreground="#f5f6f9" Grid.Column="0" Grid.Row="1"  Content="Students" FontFamily="Arial Black" FontSize="20" Padding="30" Margin="30" Command="{Binding StudentOpenCommand}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                        
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Background="#568af2" Foreground="#f5f6f9" Grid.Column="1" Grid.Row="0" Content="Cleaners" FontFamily="Arial Black" FontSize="20" Padding="30" Margin="30" Command="{Binding CleanerOpenCommand}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button  Background="#568af2" Foreground="#f5f6f9" Grid.Column="1" Grid.Row="1" Content="Courses" FontFamily="Arial Black" FontSize="20" Padding="30" Margin="30" Command="{Binding CourseOpenCommand}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <WrapPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Window>

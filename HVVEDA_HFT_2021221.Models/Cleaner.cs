@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace HVVEDA_HFT_2021221.Models
 {
     [Table("Cleaners")]
+    [ToDetect]
     public class Cleaner
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
