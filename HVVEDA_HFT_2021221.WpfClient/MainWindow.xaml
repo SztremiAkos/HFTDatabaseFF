@@ -5,54 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HVVEDA_HFT_2021221.WpfClient"
         mc:Ignorable="d"
-        Title="Class Selector" SizeToContent="WidthAndHeight">
+        Title="Class Selector" SizeToContent="WidthAndHeight" >
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid Background="#2c313c">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Foreground" Value="#f5f6f9"/>
+            <Setter Property="Background" Value="#1b1e23"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
 
-        
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
+        <Style TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#568af2"/>
+            <Setter Property="Foreground" Value="#f5f6f9"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="FontFamily" Value="Arial Black"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#2c313c">
+        <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Background="#568af2" Foreground="#f5f6f9" Grid.Column="0" Grid.Row="0" Content="Teachers" FontFamily="Arial Black" FontSize="20" Padding="0" Margin="30" Command="{Binding TeacherOpenCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button Background="#568af2" Foreground="#f5f6f9" Grid.Column="0" Grid.Row="1"  Content="Students" FontFamily="Arial Black" FontSize="20" Padding="30" Margin="30" Command="{Binding StudentOpenCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                        
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button Background="#568af2" Foreground="#f5f6f9" Grid.Column="1" Grid.Row="0" Content="Cleaners" FontFamily="Arial Black" FontSize="20" Padding="30" Margin="30" Command="{Binding CleanerOpenCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button  Background="#568af2" Foreground="#f5f6f9" Grid.Column="1" Grid.Row="1" Content="Courses" FontFamily="Arial Black" FontSize="20" Padding="30" Margin="30" Command="{Binding CourseOpenCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <WrapPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                
+            <WrapPanel Orientation="Vertical" Grid.Column="1">
+                <Button Grid.Column="1" Content="Teachers" Command="{Binding TeacherOpenCommand}"/>
+                <Button Grid.Column="1" Content="Students" Command="{Binding StudentOpenCommand}"/>
+                <Button Grid.Column="1" Content="Cleaners" Command="{Binding CleanerOpenCommand}"/>
+                <Button  Content="Courses" Command="{Binding CourseOpenCommand}"/>
             </WrapPanel>
-        </Grid>
+        <TextBox IsReadOnly="True" Text="This is the main menu, here you can select the table that u want to edit.&#x0a;Please Click The buttons to open the Editors.&#x0a;To Add a new object fill the cells and click the add button.&#x0a;To Edit select the object that you want to edit then change the valuse and&#x0a;click the edit button!" AcceptsReturn="True"/>
+
+
     </Grid>
 </Window>

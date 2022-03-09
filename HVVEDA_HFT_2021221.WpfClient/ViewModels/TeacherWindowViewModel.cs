@@ -15,6 +15,7 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
     internal class TeacherWindowViewModel : ObservableRecipient
     {
         public RestCollection<Teacher> Teachers { get; set; }
+
         public static bool IsInDesignMode
         {
             get
@@ -30,8 +31,20 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
             get { return selectedTeacher; }
             set
             {
-                SetProperty(ref selectedTeacher, value);
-                (RemoveTeacherCommand as RelayCommand).NotifyCanExecuteChanged();
+                if (value!=null)
+                {
+                    selectedTeacher = new Teacher()
+                    {
+                        LastName = value.LastName,
+                        Firstname = value.Firstname,
+                        Age = value.Age,
+                        Salary = value.Salary,
+                        Courses = value.Courses,
+                    };
+                    OnPropertyChanged();
+                    (RemoveTeacherCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
+                
             }
         }
 
@@ -40,12 +53,13 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
         public ICommand UpdateTeacherCommand { get; set; }
         public TeacherWindowViewModel()
         {
+
             if (!IsInDesignMode)
             {
                 Teachers = new RestCollection<Teacher>("http://localhost:6157/", "teacher");
                 AddTeacherCommand = new RelayCommand(() =>
                 {
-                    Teachers.Add(new Teacher() { Firstname="asd", Age=25});
+                    Teachers.Add(SelectedTeacher);
 
                 });
 
@@ -59,8 +73,9 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
                 });
                 UpdateTeacherCommand = new RelayCommand(() =>
                 {
-                    Teachers.Add(new Teacher() { Firstname = "asd", Age = 25 });
+                    Teachers.Update(SelectedTeacher);
                 });
+                SelectedTeacher = new Teacher();
             }
         }
     }

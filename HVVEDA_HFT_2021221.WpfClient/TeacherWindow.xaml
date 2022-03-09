@@ -10,16 +10,40 @@
     <Window.DataContext>
         <local1:TeacherWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Foreground" Value="#f5f6f9"/>
+            <Setter Property="Background" Value="#1b1e23"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#568af2"/>
+            <Setter Property="Foreground" Value="#f5f6f9"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10,10,10,20"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Grid.Column="0" Background="#2c313c" HorizontalContentAlignment="Stretch">
+        <ListBox ItemsSource="{Binding Teachers}" Padding="0" SelectedItem="{Binding SelectedTeacher}" Grid.Column="0" Background="#2c313c" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding FullName}"  Background="#568af2" Foreground="#f5f6f9" Padding="10" Margin="10">
+                    <Label Content="{Binding FullName}" Background="#568af2" Foreground="#f5f6f9" Padding="10" Margin="10">
                         <Label.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -31,36 +55,22 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Button Background="#568af2" Foreground="#f5f6f9" Content="Add Teacher" Command="{Binding AddTeacherCommand}" Padding="10,10,10,20" Margin="10,10,10,20">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
+            <Button Content="Add Teacher" Command="{Binding AddTeacherCommand}" />
+            
+            <Button Content="Remove Teacher" Command="{Binding RemoveTeacherCommand}"/>
 
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button Background="#568af2" Foreground="#f5f6f9" Content="Edit Teacher" Command="{Binding UpdateTeacherCommand}" Margin="10,10,10,20" Padding="10,10,10,20">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button Background="#568af2" Foreground="#f5f6f9" Content="Remove Teacher" Command="{Binding RemoveTeacherCommand}" Margin="10,10,10,20" Padding="10,10,10,20">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-
-                    </Style>
-                </Button.Resources>
-            </Button>
         </StackPanel>
         <StackPanel Grid.Column="2">
-            <Label Content="{Binding SelectedTeacher.TeacherId}" ContentStringFormat="Id: {0}" Foreground="#f5f6f9" FontSize="14"/>
-            <Label Content="{Binding SelectedTeacher.FullName}" ContentStringFormat="Name: {0}" Foreground="#f5f6f9" FontSize="14"/>
-            <Label Content="{Binding SelectedTeacher.Age}" ContentStringFormat="Age: {0}" Foreground="#f5f6f9" FontSize="14"/>
-            <Label Content="{Binding SelectedTeacher.Salary}" ContentStringFormat="Salary: {0}" Foreground="#f5f6f9" FontSize="14"/>
+            <Label Content="FirstName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox Text="{Binding SelectedTeacher.Firstname}" />
+            <Label Content="LastName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox Text="{Binding SelectedTeacher.LastName}" />
+            <Label Content="Age" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox Text="{Binding SelectedTeacher.Age}" />
+            <Label Content="Salary" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox Text="{Binding SelectedTeacher.Salary}" />
+            <Button Content="Edit Teacher" Command="{Binding UpdateTeacherCommand}" Margin="100,20"/>
+
         </StackPanel>
     </Grid>
 </Window>
