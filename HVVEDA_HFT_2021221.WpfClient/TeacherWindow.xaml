@@ -34,20 +34,21 @@
             <Setter Property="Padding" Value="10,10,10,20"/>
         </Style>
     </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Teachers}" Padding="0" SelectedItem="{Binding SelectedTeacher}" Grid.Column="0" Background="#2c313c" HorizontalContentAlignment="Stretch">
+
+        <ListBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Grid.Column="0" Background="#2c313c" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding FullName}" Background="#568af2" Foreground="#f5f6f9" Padding="10" Margin="10">
                         <Label.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="20"/>
-
                             </Style>
                         </Label.Resources>
                     </Label>
@@ -56,9 +57,7 @@
         </ListBox>
         <StackPanel Grid.Column="1">
             <Button Content="Add Teacher" Command="{Binding AddTeacherCommand}" />
-            
             <Button Content="Remove Teacher" Command="{Binding RemoveTeacherCommand}"/>
-
         </StackPanel>
         <StackPanel Grid.Column="2">
             <Label Content="FirstName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>

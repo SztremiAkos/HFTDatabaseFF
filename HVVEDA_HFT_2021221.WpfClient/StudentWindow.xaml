@@ -4,9 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HVVEDA_HFT_2021221.WpfClient"
+        xmlns:stwm="clr-namespace:HVVEDA_HFT_2021221.WpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="StudentWindow" Height="450" Width="800">
+        Title="Student Window" Height="450" Width="800" Background="#2c313c">
+    <Window.DataContext>
+        <stwm:StudentWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Foreground" Value="#f5f6f9"/>
+            <Setter Property="Background" Value="#1b1e23"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#568af2"/>
+            <Setter Property="Foreground" Value="#f5f6f9"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10,10,10,20"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}" Grid.Column="0" Background="#2c313c" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding FullName}" Background="#568af2" Foreground="#f5f6f9" Padding="10" Margin="10">
+                        <Label.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Label.Resources>
+                    </Label>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <Button Content="Add Student" Command="{Binding AddStudentCommand}" />
+            <Button Content="Remove Student" Command="{Binding RemoveStudentCommand}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label Content="FirstName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox Text="{Binding SelectedStudent.Firstname}" />
+            <Label Content="LastName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox Text="{Binding SelectedStudent.LastName}" />
+            <Button Content="Edit Student" Command="{Binding UpdateStudentCommand}" Margin="100,20"/>
+        </StackPanel>
     </Grid>
 </Window>

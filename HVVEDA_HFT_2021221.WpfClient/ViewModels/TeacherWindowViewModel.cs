@@ -12,9 +12,12 @@ using System.Windows.Input;
 
 namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
 {
-    internal class TeacherWindowViewModel : ObservableRecipient
+    public class TeacherWindowViewModel : ObservableRecipient
     {
         public RestCollection<Teacher> Teachers { get; set; }
+        public RestCollection<Student> Students { get; set; }
+        public RestCollection<Cleaner> Clenaers { get; set; }
+        public RestCollection<Course> Courses { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -25,14 +28,14 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
             }
         }
         private Teacher selectedTeacher;
-
         public Teacher SelectedTeacher
         {
             get { return selectedTeacher; }
             set
             {
-                if (value!=null)
+                if (value != null)
                 {
+
                     selectedTeacher = new Teacher()
                     {
                         LastName = value.LastName,
@@ -40,11 +43,13 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
                         Age = value.Age,
                         Salary = value.Salary,
                         Courses = value.Courses,
+                        TeacherId = value.TeacherId
                     };
                     OnPropertyChanged();
                     (RemoveTeacherCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
-                
+
+
             }
         }
 
@@ -59,13 +64,20 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
                 Teachers = new RestCollection<Teacher>("http://localhost:6157/", "teacher");
                 AddTeacherCommand = new RelayCommand(() =>
                 {
-                    Teachers.Add(SelectedTeacher);
+                    Teachers.Add(new Teacher()
+                    {
+                        Age = selectedTeacher.Age,
+                        LastName = selectedTeacher.LastName,
+                        Firstname = selectedTeacher.Firstname,
+                        Salary= selectedTeacher.Salary,
+                        Courses= selectedTeacher.Courses,
+                    });
 
                 });
 
                 RemoveTeacherCommand = new RelayCommand(() =>
                 {
-                    Teachers.Delete(SelectedTeacher.TeacherId);
+                    Teachers.Delete(selectedTeacher.TeacherId);
                 },
                 () =>
                 {

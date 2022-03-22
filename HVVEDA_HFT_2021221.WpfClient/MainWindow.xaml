@@ -42,10 +42,11 @@
             </Grid.ColumnDefinitions>
             <WrapPanel Orientation="Vertical" Grid.Column="1">
                 <Button Grid.Column="1" Content="Teachers" Command="{Binding TeacherOpenCommand}"/>
-                <Button Grid.Column="1" Content="Students" Command="{Binding StudentOpenCommand}"/>
+            <Button Grid.Column="1" Content="Students" Command="{Binding StudentOpenCommand}" />
                 <Button Grid.Column="1" Content="Cleaners" Command="{Binding CleanerOpenCommand}"/>
                 <Button  Content="Courses" Command="{Binding CourseOpenCommand}"/>
-            </WrapPanel>
+            <Button Content="Noncrud Methods"/>
+        </WrapPanel>
         <TextBox IsReadOnly="True" Text="This is the main menu, here you can select the table that u want to edit.&#x0a;Please Click The buttons to open the Editors.&#x0a;To Add a new object fill the cells and click the add button.&#x0a;To Edit select the object that you want to edit then change the valuse and&#x0a;click the edit button!" AcceptsReturn="True"/>
 
 

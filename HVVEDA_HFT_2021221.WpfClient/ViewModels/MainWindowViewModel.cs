@@ -41,6 +41,11 @@ namespace HVVEDA_HFT_2021221.WpfClient
                     TeacherWindow tw = new TeacherWindow();
                     tw.ShowDialog();
                 });
+                StudentOpenCommand = new RelayCommand(() =>
+                {
+                    StudentWindow tw = new StudentWindow();
+                    tw.ShowDialog();
+                });
             }
         }
     }
