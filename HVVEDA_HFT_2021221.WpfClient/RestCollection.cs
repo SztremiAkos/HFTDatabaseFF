@@ -274,8 +274,12 @@ namespace HVVEDA_HFT_2021221.WpfClient
         }
 
     }
+    public class Polimorph 
+    {
+        public string TableName { get; set; }
+    }
 
-    public class RestCollection<T> : INotifyCollectionChanged, IEnumerable<T>
+    public class RestCollection<T> : Polimorph, INotifyCollectionChanged, IEnumerable<T> 
     {
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
@@ -289,6 +293,7 @@ namespace HVVEDA_HFT_2021221.WpfClient
         {
             hasSignalR = hub != null;
             this.rest = new RestService(baseurl, endpoint);
+            base.TableName = endpoint;
             if (hub != null)
             {
                 this.notify = new NotifyService(baseurl + hub);

@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 namespace HVVEDA_HFT_2021221.Models
 {
     [Table("Students")]
-    [ToDetect]
-    public class Student
+    public class Student 
     {
         public Student()
         {
@@ -24,7 +23,7 @@ namespace HVVEDA_HFT_2021221.Models
         public int StudentID { get; set; }
         public string Firstname { get; set; }
         public string LastName { get; set; }
-        public string FullName { get { return Firstname + " "+ LastName; } }
+        public string Name { get { return Firstname + " "+ LastName; } }
 
         [JsonIgnore]
         public virtual ICollection<Course> Courses { get; set; }

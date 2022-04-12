@@ -11,8 +11,7 @@ namespace HVVEDA_HFT_2021221.Models
 {
 
     [Table("Courses")]
-    [ToDetect]
-    public class Course
+    public class Course 
     {
 
         //1 course --> 1 Student
@@ -57,11 +56,12 @@ namespace HVVEDA_HFT_2021221.Models
         [Required]
         public string Title { get; set; } //
 
+        public string Name { get { return Title; } set { } }
+
         [MaxLength(15)]
         [Required]
         public string Location { get; set; } //.
 
-        [Required]
         public string Type { get; set; }
 
         [Required]

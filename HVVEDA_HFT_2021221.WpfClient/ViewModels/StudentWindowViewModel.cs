@@ -56,7 +56,9 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
 
             if (!IsInDesignMode)
             {
+                
                 Students = new RestCollection<Student>("http://localhost:6157/", "student");
+                
                 AddStudentCommand = new RelayCommand(() =>
                 {
                     Students.Add(new Student()
@@ -81,6 +83,7 @@ namespace HVVEDA_HFT_2021221.WpfClient.ViewModels
                 });
                 SelectedStudent = new Student();
             }
+            ;
         }
     }
 }

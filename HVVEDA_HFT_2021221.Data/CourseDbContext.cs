@@ -77,11 +77,11 @@ namespace HVVEDA_HFT_2021221.Data
             //Course course6 = new() { CourseID = 6, Title = "Calculus 2", Credits = 6, Location = "F01", Length = "02:00", Type = "natural science" };
             //--------------------------------------------
 
-            Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
-            Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
-            Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
-            Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
+            Cleaner cleaner1 = new() { CleanerId = 1, FirstName = "Rodriguez", Salary = 200, Position = "Newbie" };
+            Cleaner cleaner2 = new() { CleanerId = 2, FirstName = "Consuela", Salary = 100, Position = "TheLazyOne" };
+            Cleaner cleaner3 = new() { CleanerId = 3, FirstName = "Francisco", Salary = 0, Position = "Fired" };
+            Cleaner cleaner4 = new() { CleanerId = 4, FirstName = "Antonio", Salary = 300, Position = " DishWasher" };
+            Cleaner cleaner5 = new() { CleanerId = 5, FirstName = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
             course1.StudentId = student1.StudentID;
             course1.TeacherId = teacher1.TeacherId;

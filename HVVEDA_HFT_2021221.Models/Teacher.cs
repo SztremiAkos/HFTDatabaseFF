@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 namespace HVVEDA_HFT_2021221.Models
 {
     [Table("Teachers")]
-    [ToDetect]
     public class Teacher
     {
         public Teacher()
@@ -29,7 +28,7 @@ namespace HVVEDA_HFT_2021221.Models
         [Required]
         public int Age { get; set; }
         public string LastName { get; set; }
-        public string FullName { get { return Firstname + " " + LastName; } }
+        public string Name { get { return Firstname + " " + LastName; } }
         public int? Salary { get; set; }
 
         [NotMapped]

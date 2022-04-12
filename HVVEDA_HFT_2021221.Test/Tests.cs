@@ -162,11 +162,11 @@ namespace HVVEDA_HFT_2021221.Test
             Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };
             //--------------------------------------------
 
-            Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
-            Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
-            Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
-            Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
+            Cleaner cleaner1 = new() { CleanerId = 1, FirstName = "Rodriguez", Salary = 200, Position = "Newbie" };
+            Cleaner cleaner2 = new() { CleanerId = 2, FirstName = "Consuela", Salary = 100, Position = "TheLazyOne" };
+            Cleaner cleaner3 = new() { CleanerId = 3, FirstName = "Francisco", Salary = 0, Position = "Fired" };
+            Cleaner cleaner4 = new() { CleanerId = 4, FirstName = "Antonio", Salary = 300, Position = " DishWasher" };
+            Cleaner cleaner5 = new() { CleanerId = 5, FirstName = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
             student1.Courses = new List<Course>();
             student2.Courses = new List<Course>();
@@ -253,11 +253,11 @@ namespace HVVEDA_HFT_2021221.Test
             Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };
             //--------------------------------------------
 
-            Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
-            Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
-            Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
-            Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
+            Cleaner cleaner1 = new() { CleanerId = 1, FirstName = "Rodriguez", Salary = 200, Position = "Newbie" };
+            Cleaner cleaner2 = new() { CleanerId = 2, FirstName = "Consuela", Salary = 100, Position = "TheLazyOne" };
+            Cleaner cleaner3 = new() { CleanerId = 3, FirstName = "Francisco", Salary = 0, Position = "Fired" };
+            Cleaner cleaner4 = new() { CleanerId = 4, FirstName = "Antonio", Salary = 300, Position = " DishWasher" };
+            Cleaner cleaner5 = new() { CleanerId = 5, FirstName = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
             student1.Courses = new List<Course>();
             student2.Courses = new List<Course>();
@@ -341,11 +341,11 @@ namespace HVVEDA_HFT_2021221.Test
             Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };     
             //--------------------------------------------
 
-            Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
-            Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
-            Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
-            Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
+            Cleaner cleaner1 = new() { CleanerId = 1, FirstName = "Rodriguez", Salary = 200, Position = "Newbie" };
+            Cleaner cleaner2 = new() { CleanerId = 2, FirstName = "Consuela", Salary = 100, Position = "TheLazyOne" };
+            Cleaner cleaner3 = new() { CleanerId = 3, FirstName = "Francisco", Salary = 0, Position = "Fired" };
+            Cleaner cleaner4 = new() { CleanerId = 4, FirstName = "Antonio", Salary = 300, Position = " DishWasher" };
+            Cleaner cleaner5 = new() { CleanerId = 5, FirstName = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
             student1.Courses = new List<Course>();
             student2.Courses = new List<Course>();
@@ -430,11 +430,11 @@ namespace HVVEDA_HFT_2021221.Test
             Course course4 = new() { CourseID = 4, Title = "Physics", Credits = 4, Location = "2.02", Length = "00:45", Type = "natural science" };
             Course course5 = new() { CourseID = 5, Title = "McDonald's basics", Credits = 1, Location = "F01", Length = "02:00", Type = "McDonald's" };            //--------------------------------------------
 
-            Cleaner cleaner1 = new() { CleanerId = 1, Name = "Rodriguez", Salary = 200, Position = "Newbie" };
-            Cleaner cleaner2 = new() { CleanerId = 2, Name = "Consuela", Salary = 100, Position = "TheLazyOne" };
-            Cleaner cleaner3 = new() { CleanerId = 3, Name = "Francisco", Salary = 0, Position = "Fired" };
-            Cleaner cleaner4 = new() { CleanerId = 4, Name = "Antonio", Salary = 300, Position = " DishWasher" };
-            Cleaner cleaner5 = new() { CleanerId = 5, Name = "Juan", Salary = 2000, Position = "HeadCleaner" };
+            Cleaner cleaner1 = new() { CleanerId = 1, FirstName = "Rodriguez", Salary = 200, Position = "Newbie" };
+            Cleaner cleaner2 = new() { CleanerId = 2, FirstName = "Consuela", Salary = 100, Position = "TheLazyOne" };
+            Cleaner cleaner3 = new() { CleanerId = 3, FirstName = "Francisco", Salary = 0, Position = "Fired" };
+            Cleaner cleaner4 = new() { CleanerId = 4, FirstName = "Antonio", Salary = 300, Position = " DishWasher" };
+            Cleaner cleaner5 = new() { CleanerId = 5, FirstName = "Juan", Salary = 2000, Position = "HeadCleaner" };
 
             student1.Courses = new List<Course>();
             student2.Courses = new List<Course>();

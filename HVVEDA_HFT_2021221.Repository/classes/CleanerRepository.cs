@@ -51,6 +51,7 @@ namespace HVVEDA_HFT_2021221.Repository
             var toUpdate = GetOne(cleaner.CleanerId);
             toUpdate.Position = cleaner.Position;
             toUpdate.Salary = cleaner.Salary;
+            toUpdate.FirstName = cleaner.Name;
             ;
             ctx.SaveChanges();
         }

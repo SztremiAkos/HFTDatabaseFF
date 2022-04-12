@@ -183,7 +183,7 @@ namespace HVVEDA_HFT_2021221.Client
             string position = Console.ReadLine();
             Console.Write("Salary:");
             int salary = int.Parse(Console.ReadLine());
-            Cleaner cleaner = new Cleaner() { Name = name, Salary = salary, Position = position};
+            Cleaner cleaner = new Cleaner() { FirstName = name, Salary = salary, Position = position};
             rest.Post<Cleaner>(cleaner, "cleaner");
             Console.WriteLine("Cleaner has been added...");
             Console.ReadLine();

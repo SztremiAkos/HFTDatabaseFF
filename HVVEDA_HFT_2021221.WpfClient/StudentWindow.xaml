@@ -44,7 +44,7 @@
         <ListBox ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}" Grid.Column="0" Background="#2c313c" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding FullName}" Background="#568af2" Foreground="#f5f6f9" Padding="10" Margin="10">
+                    <Label Content="{Binding Name}" Background="#568af2" Foreground="#f5f6f9" Padding="10" Margin="10">
                         <Label.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="20"/>

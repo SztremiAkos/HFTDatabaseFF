@@ -21,9 +21,10 @@ namespace HVVEDA_HFT_2021221.Repository
         public override void DeleteOne(int id)
         {
             var stud = GetOne(id);
-            var courses = stud.Courses;
-            if (courses !=null)
+            
+            if (stud.Courses !=null)
             {
+                var courses = stud.Courses;
                 foreach (var item in courses)
                 {
                     if (item.StudentId == stud.StudentID)

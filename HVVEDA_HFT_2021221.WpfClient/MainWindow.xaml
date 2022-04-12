@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HVVEDA_HFT_2021221.WpfClient"
         mc:Ignorable="d"
-        Title="Class Selector" SizeToContent="WidthAndHeight" >
+        Title="TeacherWindow" Height="450" Width="800" Background="#2c313c">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -20,7 +20,6 @@
             <Setter Property="Background" Value="#1b1e23"/>
             <Setter Property="Padding" Value="10"/>
         </Style>
-
         <Style TargetType="{x:Type Button}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -29,26 +28,88 @@
             </Style.Resources>
             <Setter Property="Background" Value="#568af2"/>
             <Setter Property="Foreground" Value="#f5f6f9"/>
-            <Setter Property="Margin" Value="15"/>
-            <Setter Property="Padding" Value="15"/>
-            <Setter Property="FontFamily" Value="Arial Black"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10,10,10,20"/>
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF00FF" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid Background="#2c313c">
+
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <WrapPanel Orientation="Vertical" Grid.Column="1">
-                <Button Grid.Column="1" Content="Teachers" Command="{Binding TeacherOpenCommand}"/>
-            <Button Grid.Column="1" Content="Students" Command="{Binding StudentOpenCommand}" />
-                <Button Grid.Column="1" Content="Cleaners" Command="{Binding CleanerOpenCommand}"/>
-                <Button  Content="Courses" Command="{Binding CourseOpenCommand}"/>
-            <Button Content="Noncrud Methods"/>
-        </WrapPanel>
-        <TextBox IsReadOnly="True" Text="This is the main menu, here you can select the table that u want to edit.&#x0a;Please Click The buttons to open the Editors.&#x0a;To Add a new object fill the cells and click the add button.&#x0a;To Edit select the object that you want to edit then change the valuse and&#x0a;click the edit button!" AcceptsReturn="True"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
 
+        <ListBox ItemsSource="{Binding SelectedTable}" SelectedItem="{Binding SelectedObject}" Grid.Column="0" Background="#2c313c" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}" BorderBrush="#568af2" BorderThickness="2" Background="#2c313c" Foreground="#f5f6f9" Padding="10" Margin="10">
+                        <Label.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Label.Resources>
+                    </Label>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
+        <StackPanel Grid.Column="1">
+            <ComboBox ItemsSource="{Binding tables}" SelectedItem="{Binding SelectedTable}" Name="Combobox" SelectionChanged="Combobox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <ComboBoxItem Content="{Binding TableName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Content="Add" Command="{Binding AddTeacherCommand}"/>
+            <Button Content="Remove" Command="{Binding RemoveTeacherCommand}"/>
+
+            
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" x:Name="stack">
+            <!-- Teachers -->
+            <Label x:Name="T1" Content="FirstName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" />
+            <TextBox x:Name="T2" Text="{Binding SelectedObject.Firstname}" />
+            <Label x:Name="T3" Content="LastName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox x:Name="T4" Text="{Binding SelectedObject.LastName}"/>
+            <Label x:Name="T5" Content="Age" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox x:Name="T6" Text="{Binding SelectedObject.Age}"/>
+            <Label x:Name="T7" Content="Salary" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10"/>
+            <TextBox x:Name="T8" Text="{Binding SelectedObject.Salary}"/>
+
+            <!-- Students -->
+            <Label x:Name="S1" Content="FirstName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed" />
+            <TextBox x:Name="S2" Text="{Binding SelectedObject.Firstname}"  Visibility="Collapsed" />
+            <Label x:Name="S3" Content="LastName" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed" />
+            <TextBox x:Name="S4" Text="{Binding SelectedObject.LastName}"  Visibility="Collapsed" />
+
+            <!-- Courses-->
+            <Label x:Name="K1" Content="Title" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed"/>
+            <TextBox  x:Name="K2" Text="{Binding SelectedObject.Title}"  Visibility="Collapsed"/>
+            <Label  x:Name="K3" Content="Location" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed"/>
+            <TextBox  x:Name="K4" Text="{Binding SelectedObject.Location}"  Visibility="Collapsed"/>
+            <Label  x:Name="K5" Content="Length" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed"/>
+            <TextBox  x:Name="K6" Text="{Binding SelectedObject.Length}"  Visibility="Collapsed"/>
+
+            <!-- Cleaners-->
+            <Label  x:Name="CC1" Content="Name" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed"/>
+            <TextBox  x:Name="CC2" Text="{Binding SelectedObject.FirstName}" Visibility="Collapsed"/>
+            <Label x:Name="CC3"  Content="Salary" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed"/>
+            <TextBox  x:Name="CC4" Text="{Binding SelectedObject.Salary}"  Visibility="Collapsed"/>
+            <Label  x:Name="CC5" Content="Position" Foreground="#f5f6f9" Margin="10,10,10,0" Padding="10" Visibility="Collapsed"/>
+            <TextBox x:Name="CC6"  Text="{Binding SelectedObject.Position}"  Visibility="Collapsed"/>
+
+            <!--Edit Button-->
+            <Button Content="Edit" Command="{Binding UpdateTeacherCommand}" Margin="100,20" />
+        </StackPanel>
     </Grid>
 </Window>
