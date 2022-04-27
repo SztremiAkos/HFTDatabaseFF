@@ -1,6 +1,8 @@
-﻿using HVVEDA_HFT_2021221.Logic;
+﻿using HVVEDA_HFT_2021221.Endpoint.Services;
+using HVVEDA_HFT_2021221.Logic;
 using HVVEDA_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
     {
 
         ICleanerLogic cl;
+        IHubContext<SignalRHub> hub;
 
-        public CleanerController(ICleanerLogic cl)
+        public CleanerController(ICleanerLogic cl, IHubContext<SignalRHub> hub)
         {
             this.cl = cl;
+            this.hub = hub;
         }
 
         // GET: /Cleaner
@@ -40,6 +44,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Cleaner value)
         {
             cl.AddNewCleaner(value);
+            this.hub.Clients.All.SendAsync("CleanerCreated", value);
         }
 
         // PUT /Cleaner/5
@@ -47,13 +52,16 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Cleaner value)
         {
             cl.UpdateCleaner(value);
+            this.hub.Clients.All.SendAsync("CleanerUpdated", value);
         }
 
         // DELETE /Cleaner/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var cleaner = this.cl.GetCleanerById(id);
             cl.DeleteCleaner(id);
+            this.hub.Clients.All.SendAsync("CleanerDeleted", cleaner);
         }
     }
 }

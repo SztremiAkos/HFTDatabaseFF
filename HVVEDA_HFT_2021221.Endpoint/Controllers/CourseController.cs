@@ -1,6 +1,8 @@
-﻿using HVVEDA_HFT_2021221.Logic;
+﻿using HVVEDA_HFT_2021221.Endpoint.Services;
+using HVVEDA_HFT_2021221.Logic;
 using HVVEDA_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +16,12 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
     public class CourseController : ControllerBase
     {
         ICourseLogic cl;
+        IHubContext<SignalRHub> hub;
 
-        public CourseController(ICourseLogic cl)
+        public CourseController(ICourseLogic cl, IHubContext<SignalRHub> hub)
         {
             this.cl = cl;
+            this.hub = hub;
         }
 
         // GET: /Course
@@ -39,6 +43,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Course value)
         {
             cl.AddNewCourse(value);
+            this.hub.Clients.All.SendAsync("CourseCreated", value);
         }
 
         // PUT /course/5
@@ -46,13 +51,16 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Course value)
         {
             cl.UpdateCourse(value);
+            this.hub.Clients.All.SendAsync("CourseUpdated", value);
         }
 
         // DELETE /course/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var course = cl.GetOne(id);
             cl.DeleteCourse(id);
+            this.hub.Clients.All.SendAsync("CourseDeleted", course);
         }
     }
 }

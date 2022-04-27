@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace HVVEDA_HFT_2021221.WpfClient
 {
-    public  class MainWindowViewModel : ObservableRecipient
+    public class MainWindowViewModel : ObservableRecipient
     {
         public RestCollection<Teacher> Teachers { get; set; }
         public RestCollection<Student> Students { get; set; }
@@ -123,10 +123,10 @@ namespace HVVEDA_HFT_2021221.WpfClient
             if (!IsInDesignMode)
             {
                 tables = new List<Polimorph>();
-                Teachers = new RestCollection<Teacher>("http://localhost:6157/", "teacher");
-                Students = new RestCollection<Student>("http://localhost:6157/", "student");
-                Cleaners = new RestCollection<Cleaner>("http://localhost:6157/", "cleaner");
-                Courses = new RestCollection<Course>("http://localhost:6157/", "course");
+                Teachers = new RestCollection<Teacher>("http://localhost:6157/", "teacher", "hub");
+                Students = new RestCollection<Student>("http://localhost:6157/", "student", "hub");
+                Cleaners = new RestCollection<Cleaner>("http://localhost:6157/", "cleaner", "hub");
+                Courses = new RestCollection<Course>("http://localhost:6157/", "course", "hub");
                 tables.Add(Teachers);
                 tables.Add(Students);
                 tables.Add(Courses);

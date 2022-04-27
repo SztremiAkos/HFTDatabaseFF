@@ -1,6 +1,8 @@
-﻿using HVVEDA_HFT_2021221.Logic;
+﻿using HVVEDA_HFT_2021221.Endpoint.Services;
+using HVVEDA_HFT_2021221.Logic;
 using HVVEDA_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +16,12 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
     public class TeacherController : ControllerBase
     {
         ITeacherLogic tl;
+        IHubContext<SignalRHub> hub;
 
-        public TeacherController(ITeacherLogic tl)
+        public TeacherController(ITeacherLogic tl, IHubContext<SignalRHub> hub)
         {
             this.tl = tl;
+            this.hub = hub;
         }
 
         // GET: /Teacher
@@ -39,6 +43,7 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Teacher teacher)
         {
             tl.AddNewTeacher(teacher);
+            this.hub.Clients.All.SendAsync("TeacherCreated", teacher);
         }
 
         // PUT /student
@@ -46,13 +51,16 @@ namespace HVVEDA_HFT_2021221.Endpoint.Controllers
         public void Put(int id, [FromBody] Teacher teacher)
         {
             tl.UpdateTeacher(teacher);
+            this.hub.Clients.All.SendAsync("TeacherUpdated", teacher);
         }
 
         // DELETE /Teacher/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var teacher = tl.GetOneTeacher(id);
             tl.DeleteTeacher(id);
+            this.hub.Clients.All.SendAsync("TeacherDeleted", teacher);
         }
     }
 }

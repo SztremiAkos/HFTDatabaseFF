@@ -1,4 +1,5 @@
 using HVVEDA_HFT_2021221.Data;
+using HVVEDA_HFT_2021221.Endpoint.Services;
 using HVVEDA_HFT_2021221.Logic;
 using HVVEDA_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace HVVEDA_HFT_2021221.Endpoint
 
 
             services.AddTransient<CourseDbContext, CourseDbContext>();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,11 +46,17 @@ namespace HVVEDA_HFT_2021221.Endpoint
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x
+                    .AllowCredentials()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+            .WithOrigins("http://localhost:46598"));
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
