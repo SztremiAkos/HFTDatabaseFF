@@ -11,16 +11,16 @@
     "IIS Express": {
         "commandName": "IISExpress",
         "launchUrl": "teacher",
-        "launchBrowser": true,
+        "launchBrowser": false,
         "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Development"
         }
     },
     "HVVEDA_HFT_2021221.Endpoint": {
-        "commandName": "Project",
-        "launchUrl": "student",
+      "commandName": "Project",
+      "launchUrl": "student",
       "dotnetRunMessages": "true",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
